@@ -31,12 +31,12 @@ function addNewUser() {
 
   if (random() > 0.5) newuser.gender = 'male'; else newuser.gender = 'female';
   skills.forEach((skill) => {
-    if (random() > 0.1) {
+    if (random() > 0.01) {
       newuser.skills.push(skill);
     }
   }, this);
   if (newuser.skills.length === 0) {
-    newuser.skills.push(skills[getRandomInt(0, 15)]);
+    newuser.skills.push(skills[getRandomInt(0, 50)]);
   }
   if ((i % 100) === 0) {
     console.log(i);
