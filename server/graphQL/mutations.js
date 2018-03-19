@@ -6,16 +6,32 @@ const {
   GraphQLBoolean,
 } = require('graphql');
 
-
 const config = require('../config/database');
 const User = require('../models/user');
 const validateStrings = require('../utils/validateStrings');
 const jwt = require('jsonwebtoken');
+const Skill = require('../models/skills');
 // const _ = require('lodash');
 // const { transporter, hostName } = require('../config/constants');
 
 // Import Types
 const { ErrorSuccessType } = require('./types');
+
+
+const getskills = async () => {
+  const skillsList = await Skill.getSkills();
+  if (!skillsList) {
+    return {
+      error: 'Somthing went worng',
+    };
+  }
+  const skills = [];
+
+  skillsList.forEach((element) => {
+    skills.push(element.item);
+  });
+  return skills;
+};
 
 module.exports = new GraphQLObjectType({
   name: 'Mutation',
@@ -34,8 +50,10 @@ module.exports = new GraphQLObjectType({
               error: 'Missing Arguments',
             };
           }
-          if ((args.email === undefined || args.email === '') &&
-          (args.phone === undefined || args.phone === '')) {
+          if (
+            (args.email === undefined || args.email === '') &&
+            (args.phone === undefined || args.phone === '')
+          ) {
             return {
               error: 'Missing Arguments',
             };
@@ -106,22 +124,32 @@ module.exports = new GraphQLObjectType({
         hOH: { type: new GraphQLNonNull(GraphQLBoolean) },
         skills: { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) },
       },
-      resolve(parentValue, args) {
-        if (args.token === undefined || args.token === ''
-        || args.password === undefined || args.password === ''
-        || args.phone === undefined || args.phone === ''
-        || args.dOB === undefined || args.dOB === ''
-        || args.gender === undefined || args.gender === ''
-        || args.hOH === undefined || args.hOH === ''
-        || args.skills === undefined || args.skills === '' ||
-      args.skills.length === 0) {
+      async resolve(parentValue, args) {
+        if (
+          args.token === undefined ||
+          args.token === '' ||
+          args.password === undefined ||
+          args.password === '' ||
+          args.phone === undefined ||
+          args.phone === '' ||
+          args.dOB === undefined ||
+          args.dOB === '' ||
+          args.gender === undefined ||
+          args.gender === '' ||
+          args.hOH === undefined ||
+          args.hOH === '' ||
+          args.skills === undefined ||
+          args.skills === '' ||
+          args.skills.length === 0
+        ) {
           return {
             error: 'Missing Arguments',
           };
         }
         if (!validateStrings.validatePassword(args.password)) {
           return {
-            error: 'Password must contain a number, a letter, and a special character',
+            error:
+              'Password must contain a number, a letter, and a special character',
           };
         }
         if (!validateStrings.validatePhone(args.phone)) {
@@ -144,6 +172,7 @@ module.exports = new GraphQLObjectType({
             error: 'hOH must be true or false',
           };
         }
+        const skills = (await getskills());
         args.skills.forEach((skill) => {
           if (skills.indexOf(skill) === -1) {
             return {
@@ -484,7 +513,7 @@ module.exports = new GraphQLObjectType({
       args: {
         skill: { type: new GraphQLNonNull(GraphQLString) },
       },
-      resolve(parentValue, args, context) {
+      async resolve(parentValue, args, context) {
         if (context.user.id === undefined || context.user.id === '') {
           return {
             error: 'Not Loged In',
@@ -495,7 +524,7 @@ module.exports = new GraphQLObjectType({
             error: 'Must Provide A Skill',
           };
         }
-        if (skills.indexOf(args.skill) === -1) {
+        if ((await getskills()).indexOf(args.skill) === -1) {
           return {
             error: 'Invalid Skill',
           };
@@ -528,7 +557,7 @@ module.exports = new GraphQLObjectType({
       args: {
         skill: { type: new GraphQLNonNull(GraphQLString) },
       },
-      resolve(parentValue, args, context) {
+      async resolve(parentValue, args, context) {
         if (context.user.id === undefined || context.user.id === '') {
           return {
             error: 'Not Loged In',
@@ -539,7 +568,7 @@ module.exports = new GraphQLObjectType({
             error: 'Must Provide A Skill',
           };
         }
-        if (skills.indexOf(args.skill) === -1) {
+        if ((await getskills()).indexOf(args.skill) === -1) {
           return {
             error: 'Invalid Skill',
           };
@@ -877,7 +906,7 @@ module.exports = new GraphQLObjectType({
         skill: { type: new GraphQLNonNull(GraphQLString) },
         userId: { type: new GraphQLNonNull(GraphQLString) },
       },
-      resolve(parentValue, args, context) {
+      async resolve(parentValue, args, context) {
         if (!context.user.admin) {
           return {
             error: 'Must Be Admin',
@@ -893,7 +922,7 @@ module.exports = new GraphQLObjectType({
             error: 'Must Provide A Skill',
           };
         }
-        if (skills.indexOf(args.skill) === -1) {
+        if ((await getskills()).indexOf(args.skill) === -1) {
           return {
             error: 'Invalid Skill',
           };
@@ -927,7 +956,7 @@ module.exports = new GraphQLObjectType({
         skill: { type: new GraphQLNonNull(GraphQLString) },
         userId: { type: new GraphQLNonNull(GraphQLString) },
       },
-      resolve(parentValue, args, context) {
+      async resolve(parentValue, args, context) {
         if (!context.user.admin) {
           return {
             error: 'Must Be Admin',
@@ -943,7 +972,7 @@ module.exports = new GraphQLObjectType({
             error: 'Must Provide A Skill',
           };
         }
-        if (skills.indexOf(args.skill) === -1) {
+        if ((await getskills()).indexOf(args.skill) === -1) {
           return {
             error: 'Invalid Skill',
           };
@@ -969,6 +998,77 @@ module.exports = new GraphQLObjectType({
             });
           });
         });
+      },
+    },
+    AddAffiliationAdmin: {
+      type: ErrorSuccessType,
+      args: {
+        affiliation: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      async resolve(parentValue, args, context) {
+        if (!context.user.admin) {
+          return {
+            error: 'Must Be Admin',
+          };
+        }
+        if (context.user.id === undefined || context.user.id === '') {
+          return {
+            error: 'Not Loged In',
+          };
+        }
+        if (args.affiliation === undefined || args.affiliation === '') {
+          return {
+            error: 'Must Provide A Skill',
+          };
+        }
+        if ((await getskills()).indexOf(args.affiliation) !== -1) {
+          return {
+            error: 'Invalid Skill',
+          };
+        }
+        args.affiliation = args.affiliation
+          .toLowerCase()
+          .split(' ')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+        const success = await Skill.addAffiliation(args.affiliation);
+        return { success: 'Added affiliation' };
+      },
+    },
+    RemoveAffiliationAdmin: {
+      type: ErrorSuccessType,
+      args: {
+        affiliation: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      async resolve(parentValue, args, context) {
+        if (!context.user.admin) {
+          return {
+            error: 'Must Be Admin',
+          };
+        }
+        if (context.user.id === undefined || context.user.id === '') {
+          return {
+            error: 'Not Loged In',
+          };
+        }
+        if (args.affiliation === undefined || args.affiliation === '') {
+          return {
+            error: 'Must Provide A Skill',
+          };
+        }
+        if ((await getskills()).indexOf(args.affiliation) === -1) {
+          return {
+            error: 'Invalid Skill',
+          };
+        }
+        args.affiliation = args.affiliation
+          .toLowerCase()
+          .split(' ')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+        const success = Skill.removeAffiliation(args.affiliation);
+        User.removeAffiliation(args.affiliation);
+        return { success: 'Removed affiliation' };
       },
     },
   },
