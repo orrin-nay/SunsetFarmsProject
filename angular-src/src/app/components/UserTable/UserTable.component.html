@@ -1,0 +1,169 @@
+<div>
+  <table class="table">
+    <thead>
+    <td>Name</td>
+    <td>Email</td>
+    <td>Phone</td>
+    <td>Date Of Birth</td>
+    <td>Head Of Householed</td>
+    <td>Gender</td>
+    <td>Affiliation</td>
+    <td>Admin</td>
+    </thead>
+    <tr *ngFor="let user of users;let i = index">
+      <td>{{user.name}} 
+       <td>{{user.email?user.email:'Null'}}
+        <button class="btn btn-default btn-sm pull-right" (click)="currentUser(i); emailModal.show()"><span class="glyphicon glyphicon-pencil">Edit</span></button></td>
+      <td>{{user.phone?getFormatedPhone(user):'Null'}}
+        <button class="btn btn-default btn-sm pull-right" (click)="currentUser(i); phoneModal.show()"><span class="glyphicon glyphicon-pencil">Edit</span></button></td>
+      <td>{{user.dOB?getFormatedDOB(user):'Null'}}
+        <button class="btn btn-default btn-sm pull-right" (click)="currentUser(i); dOBModal.show()"><span class="glyphicon glyphicon-pencil">Edit</span></button></td>
+      <td>{{user.hOH!=undefined?validateService.titleCase(getFormatedHOH(user)):'Null'}}
+        <button class="btn btn-default btn-sm pull-right" (click)="currentUser(i); hOHModal.show()"><span class="glyphicon glyphicon-pencil">Edit</span></button></td>
+      <td>{{user.gender?validateService.titleCase(user.gender):'Null'}}
+        <button class="btn btn-default btn-sm pull-right" (click)="currentUser(i); genderModal.show()"><span class="glyphicon glyphicon-pencil">Edit</span></button></td>
+      <td>
+          <button class="btn btn-default btn-sm pull-right" (click)="currentUser(i); skillsModal.show()"><span class="glyphicon glyphicon-pencil">Edit</span></button>
+          <p *ngFor="let skill of user.skills">{{skill}}</p>
+      <td>{{user.admin?validateService.titleCase(user.admin.toString()):'False'}}
+          <button class="btn btn-default btn-sm pull-right" (click)="currentUser(i); adminModal.show()"><span class="glyphicon glyphicon-pencil">Edit</span></button>
+      </td>
+    </tr>
+  </table>
+</div>
+  <!-- Email Modal -->
+  <app-modal #emailModal>
+      <div class="app-modal-header">
+        Change Email
+      </div>
+      <div class="app-modal-body">
+        <div class="form-group">
+          <form (submit)=changeEmail(emailModal)>
+            <label>New Email:</label>
+            <input type="email" [(ngModel)]="newEmail" name="newEmail" class="form-control">
+          </form>
+        </div>
+      </div>
+      <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="emailModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)=changeEmail(emailModal)>Save changes</button>
+      </div>
+    </app-modal>
+    <!-- Phone Modal -->
+    <app-modal #phoneModal>
+      <div class="app-modal-header">
+        Change Phone
+      </div>
+      <div class="app-modal-body">
+        <div class="form-group">
+          <form (submit)=changePhone(phoneModal)>
+            <label>New Phone:</label>
+            <input type="tel" [(ngModel)]="newPhone" name="newPhone" class="form-control">
+          </form>
+        </div>
+      </div>
+      <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="phoneModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)=changePhone(phoneModal)>Save changes</button>
+      </div>
+    </app-modal>
+    <!-- dOB Modal -->
+    <app-modal #dOBModal>
+      <div class="app-modal-header">
+        Change Date Of Birth
+      </div>
+      <div class="app-modal-body">
+        <div class="form-group">
+          <form (submit)=changeDOB(dOBModal)>
+            <label>New Date Of Birth:</label>
+            <input type="date" [(ngModel)]="newDOB" name="newDOB" class="form-control">
+          </form>
+        </div>
+      </div>
+      <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="dOBModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)=changeDOB(dOBModal)>Save changes</button>
+      </div>
+    </app-modal>
+    <!-- Gender Modal -->
+    <app-modal #genderModal>
+      <div class="app-modal-header">
+        Change Gender
+      </div>
+      <div class="app-modal-body">
+        <div class="form-group">
+          <form (submit)=changeGender(genderModal)>
+            <label>Gender:  </label>
+            <label class="radio-inline"><input type="radio" [(ngModel)]="newGender" name="newGender" value="male">Male</label>
+            <label class="radio-inline"><input type="radio" [(ngModel)]="newGender" name="newGender" value="female">Female</label>
+          </form>
+        </div>
+      </div>
+      <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="genderModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)=changeGender(genderModal)>Save changes</button>
+      </div>
+    </app-modal>
+    <!-- hOH Modal -->
+    <app-modal #hOHModal>
+      <div class="app-modal-header">
+        Change Head of Household
+      </div>
+      <div class="app-modal-body">
+        <div class="form-group">
+          <form (submit)=newHOH(hOHModal)>
+            <label>Head Of Household:  </label>
+            <label class="radio-inline"><input type="radio" [(ngModel)]="newHOH" name="newHOH" value="true">Yes</label>
+            <label class="radio-inline"><input type="radio" [(ngModel)]="newHOH" name="newHOH" value="false">No</label>
+          </form>
+        </div>
+      </div>
+      <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="hOHModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)=changeHOH(hOHModal)>Save changes</button>
+      </div>
+    </app-modal>
+    <!-- Skills Modal -->
+    <app-modal #skillsModal>
+      <div class="app-modal-header">
+        Change Affiliation
+      </div>
+      <div class="app-modal-body">
+        <form (submit)="addSkill(skillsModal)" class="form-inline">
+          <div class="form-group">
+            <input [(ngModel)]="newSkill" name="newSkill" type="tel" class="form-control" placeholder="Search for affiliations" list="suggestedSkills"
+              (ngModelChange)="skillSearchChange()" autocomplete="off">
+            <datalist id="suggestedSkills">
+              <option *ngFor="let skillSuggestion of availableSkills" value="{{skillSuggestion}}">
+            </datalist>
+            <input type="submit" class="btn btn-primary" value="Add" [disabled]="!canSubmit">
+          </div>
+        </form>
+        <h1 class="lable-holder">
+          <span class="label label-primary skill pull-left" *ngFor="let skill of user.skills">
+                  {{skill}}<button (click)="removeSkill(skill)" class="btn btn-primary remove-btn" aria-hidden="true">&times;</button></span>
+        </h1>
+        <p class="clear-fix"></p>
+      </div>
+      <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="skillsModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="skillsModal.hide()">Save changes</button>
+      </div>
+    </app-modal>
+    <!-- Admin Modal -->
+    <app-modal #adminModal>
+        <div class="app-modal-header">
+          Change Admin Privilege
+        </div>
+        <div class="app-modal-body">
+            <form (submit)=changeAdminPrivilege(adminModal)>
+              <label>Admin Privilege:  </label>
+              <label class="radio-inline"><input type="radio" [(ngModel)]="newAdmin" name="newAdmin" value="true">True</label>
+              <label class="radio-inline"><input type="radio" [(ngModel)]="newAdmin" name="newAdmin" value="false">False</label>
+            </form>
+        </div>
+        <div class="app-modal-footer">
+          <button type="button" class="btn btn-default" (click)="adminModal.hide()">Close</button>
+          <button type="button" class="btn btn-primary" (click)=changeAdminPrivilege(adminModal)>Save changes</button>
+        </div>
+      </app-modal>

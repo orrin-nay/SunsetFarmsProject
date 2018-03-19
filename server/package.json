@@ -1,0 +1,30 @@
+{
+  "name": "sunsetFarmsServer",
+  "version": "1.0.0",
+  "description": "suset farms main server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "apollo-server-express": "^1.0.5",
+    "async": "*",
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "graphql": "^0.10.5",
+    "graphql-subscriptions": "^0.4.4",
+    "jsonwebtoken": "*",
+    "loadash": "0.0.1",
+    "lodash": "^4.17.4",
+    "mongoose": "*",
+    "node-random-name": "^1.0.1",
+    "nodemailer": "*",
+    "passport-jwt": "*",
+    "subscriptions-transport-ws": "^0.8.2",
+    "twilio": "^3.11.0"
+  },
+  "author": "N/A"
+}

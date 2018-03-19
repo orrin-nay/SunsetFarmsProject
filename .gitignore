@@ -1,0 +1,6 @@
+# Build and Release Folders
+angular-src/node_modules
+angular2/node_modules
+node_modules
+.idea/
+server/.idea

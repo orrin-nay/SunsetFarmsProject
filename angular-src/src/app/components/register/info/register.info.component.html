@@ -1,0 +1,22 @@
+<h2 class="page-header">{{user.name}}</h2>
+<form (submit)="next()">
+  <div class="form-group">
+    <label>Phone</label>
+    <input type="tel" [(ngModel)]="user.phone" name="user.phone" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Date Of Birth</label>
+    <input type="date" [(ngModel)]="user.dOB" name="user.dOB" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Gender:  </label>
+    <label class="radio-inline"><input type="radio" [(ngModel)]="user.gender" name="user.gender" value="male">Male</label>
+    <label class="radio-inline"><input type="radio" [(ngModel)]="user.gender" name="user.gender" value="female">Female</label>
+  </div>
+  <div class="form-group">
+    <label>Head Of Household:  </label>
+    <label class="radio-inline"><input type="radio" [(ngModel)]="user.hOH" name="user.hOH" value="true">Yes</label>
+    <label class="radio-inline"><input type="radio" [(ngModel)]="user.hOH" name="user.hOH" value="false">No</label>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Next">
+</form>

@@ -1,0 +1,11 @@
+.skill{
+    margin: 10px;
+  }
+  .remove-btn{
+      padding: 6px;
+      margin-left: 2px;
+      font-size: 1em;
+  }
+  .clear-fix{
+    clear: both;
+  }

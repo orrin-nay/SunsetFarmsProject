@@ -1,0 +1,17 @@
+.skill{
+  margin: 10px;
+  float: left;
+}
+.remove-btn{
+    padding: 6px;
+    margin-left: 2px;
+    font-size: 1em;
+}
+.lable-holder{
+}
+.btn-finished{
+  clear: both;
+}
+.clear-fix{
+  clear: both;
+}

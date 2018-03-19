@@ -1,0 +1,20 @@
+<h1 class="page-header">Dashboard</h1>
+<form (submit)="addFillter()" class="form-inline">
+    <div class="form-group">
+      <input  [(ngModel)]="filterField" name="filterField" type="tel" class="form-control" 
+      placeholder="Filter By Gender Head Of House Birth Year Or Skills" list="suggestedFilters" (ngModelChange)="filterSearchChange()" autocomplete="off">
+      <datalist id="suggestedFilters">
+        <option *ngFor="let filterSuggestion of filterSuggestions" value="{{filterSuggestion}}">
+      </datalist>
+      <input type="submit" class="btn btn-primary" value="Add" [disabled]="!canSubmit">
+    </div>
+</form>
+<h1 class="lable-holder">
+    <span class="label label-primary filter" *ngFor="let filter of filters">
+        {{filter}}<button (click)="removeFilter(filter)" class="btn btn-primary remove-btn">&times;</button></span>
+</h1>
+<p class="clear-fix"></p>
+<br>
+<hr>
+
+<app-user-table [users] = "users"></app-user-table>
