@@ -1,1 +1,2 @@
-module.exports.ServerAdress = 'https://sunsetfarms.herokuapp.com';
+module.exports.ServerAdress = 'https://sunsetfarm.herokuapp.com'
+;

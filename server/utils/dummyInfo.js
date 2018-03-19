@@ -1,11 +1,5 @@
 const randomName = require('node-random-name');
 const User = require('..//models/user');
-const mongoose = require('mongoose');
-const config = require('../config/database');
-const Skill = require('../models/skills');
-
-const skills = [];
-
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -13,7 +7,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
   // The maximum is exclusive and the minimum is inclusive
 }
-let itterationsToDo = 500;
+let itterationsToDo = 100;
 let i = 0;
 function addNewUser() {
   const newuser = new User();
@@ -31,12 +25,12 @@ function addNewUser() {
 
   if (random() > 0.5) newuser.gender = 'male'; else newuser.gender = 'female';
   skills.forEach((skill) => {
-    if (random() > 0.01) {
+    if (random() > 0.6) {
       newuser.skills.push(skill);
     }
   }, this);
   if (newuser.skills.length === 0) {
-    newuser.skills.push(skills[getRandomInt(0, 50)]);
+    newuser.skills.push(skills[getRandomInt(0, 15)]);
   }
   if ((i % 100) === 0) {
     console.log(i);
@@ -50,24 +44,6 @@ function addNewUser() {
     }
   });
 }
-
-// Connect To Database
-mongoose.connect(config.database, { useMongoClient: true });
-
-// On Connection
-mongoose.connection.on('connected', async () => {
-  console.log(`Connected to database ${config.database}`);
-  const skillsList = await Skill.getSkills();
-  if (!skillsList) {
-    return { error: 'Somthing went worng' };
-  }
-  console.log('got skills');
-  skillsList.forEach((element) => {
-    skills.push(element.item);
-  });
-  console.log('adding user');
-  addNewUser();
-});
 module.exports = (itterations) => {
   itterationsToDo = itterations;
   addNewUser();

@@ -1,35 +1,23 @@
-import { element } from 'protractor';
-import { Router } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
-import { Component, OnInit } from '@angular/core';
+import {element} from 'protractor';
+import {Router} from '@angular/router';
+import {FlashMessagesService} from 'angular2-flash-messages';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../../../services/auth.service";
+
 
 @Component({
-  selector: 'app-dashboard-viewMessages',
-  templateUrl: './dashboard.viewMessages.component.html',
-  styleUrls: ['./dashboard.viewMessages.component.css']
+    selector: 'app-dashboard-viewMessages',
+    templateUrl: './dashboard.viewMessages.component.html',
+    styleUrls: ['./dashboard.viewMessages.component.css']
 })
 export class ViewMessagesComponent implements OnInit {
-  subject: string;
-  message: string;
-  constructor(
-    private flashMessage: FlashMessagesService,
-    private router: Router) {
-      this.subject = localStorage.getItem('subject');
-      this.message = localStorage.getItem('message');
-     }
+    constructor(private flashMessage: FlashMessagesService,
+                private authService: AuthService,
+                private router: Router) {
+    }
 
-  ngOnInit() {
-  }
-  submit(): void {
-    if ((this.subject === undefined || this.subject === '') ||
-      (this.message === undefined || this.message === '')) {
-        this.flashMessage.show('Please Fill Out All Fields', {cssClass: 'alert-danger', timeout: 3000});
-      }else {
-        this.router.navigate(['dashboard/filters']);
-      }
-  }
-  saveMessage(): void {
-    localStorage.setItem('subject', this.subject);
-    localStorage.setItem('message', this.message);
-  }
+    ngOnInit() {
+        let messages = this.authService.getMessages('', '14354146499', '');
+        console.log(messages, 'messages from client');
+    }
 }

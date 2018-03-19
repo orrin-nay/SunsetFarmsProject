@@ -41,8 +41,8 @@ export class ProfileComponent {
     this.newHOH = this.user.hOH;
 
     this.skillsService.getSkills(this.user.skills).then(skills=>{
-      this.availableSkills = skills
-    })
+      this.availableSkills = skills;
+    });
     this.canSubmit = false;
   }
   skillSearchChange(): void {
@@ -62,16 +62,8 @@ export class ProfileComponent {
       return;
     }
     if (this.validateService.validateEmail(this.newEmail)) {
-      this.authService.changeEmail(this.newEmail).subscribe(data => {
-        if (data.data.ChangeEmail.success) {
-          this.user.email = this.newEmail;
-          this.authService.storeUserDataNoToken(this.user);
-          this.flashMessage.show(data.data.ChangeEmail.success, { cssClass: 'alert-success', timeout: 12000 });
-          emailModal.hide();
-        } else {
-          emailModal.setErrorMessage(data.data.ChangeEmail.error);
-        }
-      });
+      this.flashMessage.show('You can\'t change email!', { cssClass: 'alert-success', timeout: 12000 });
+      emailModal.hide();
     } else {
       emailModal.setErrorMessage('Please Enter A Valid Email');
     }
@@ -164,14 +156,8 @@ export class ProfileComponent {
     }
     const pasowrdErr = this.validateService.validateNewPassowrd(this.newPassword1, this.newPassword2);
     if (!pasowrdErr) {
-      this.authService.changePassword(this.newPassword1).subscribe(data => {
-        if (data.data.ChangePassword.success) {
-          this.flashMessage.show(data.data.ChangePassword.success, { cssClass: 'alert-success', timeout: 12000 });
+      this.flashMessage.show('You can\'t change password!', { cssClass: 'alert-success', timeout: 12000 });
           passwordModal.hide();
-        } else {
-          passwordModal.setErrorMessage(data.data.ChangePassword.error);
-        }
-      });
     } else {
       passwordModal.setErrorMessage(pasowrdErr);
     }
@@ -180,7 +166,6 @@ export class ProfileComponent {
     const index = this.user.skills.indexOf(skill);
     if (index !== -1) {
       this.authService.removeSkill(skill).subscribe(async (data) => {
-        console.log(data);
         if (data.data.RemoveSkill.success) {
           this.user.skills.splice(index, 1);
           this.authService.storeUserDataNoToken(this.user);

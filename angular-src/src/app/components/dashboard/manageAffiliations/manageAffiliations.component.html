@@ -1,3 +1,29 @@
-<p>
-  manageAffiliations works!
-</p>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let affiliation of skills">{{affiliation}}
+    <button class="btn btn-default btn-sm pull-right" (click)="currentAffiliation(affiliation); areYouSureModal.show()">
+      <span class="badge">X</span>
+    </button>
+  </li>
+  <li class="list-group-item">
+    <form (submit)="addAffiliation()" class="form-inline">
+      <div class="form-group">
+        <input [(ngModel)]="affiliationField" name="affiliationField" type="text" class="form-control" placeholder="Add Affiliation"
+          (ngModelChange)="addAffiliationChange()">
+        <input type="submit" class="btn btn-primary" value="Add" [disabled]="!canSubmit">
+      </div>
+    </form>
+  </li>
+</ul>
+
+<app-modal #areYouSureModal>
+  <div class="app-modal-header">
+    Remove Affiliation
+  </div>
+  <div class="app-modal-body">
+    <p>Are you sure you want to remove the affiliation {{affiliationToBeRemoved}}</p>
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="areYouSureModal.hide()">No</button>
+    <button type="button" class="btn btn-primary" (click)=removeAffiliation(areYouSureModal)>Yes</button>
+  </div>
+</app-modal>

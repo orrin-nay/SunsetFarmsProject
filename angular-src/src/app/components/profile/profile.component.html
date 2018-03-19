@@ -2,12 +2,12 @@
   <h2 class="page-header">{{user.name}}</h2>
   <ul class="list-group">
     <li class="list-group-item">Name: {{user.name}}</li>
-    <li class="list-group-item">Email: {{user.email}}<button class="btn btn-default btn-sm pull-right" (click)="emailModal.show()"><span class="glyphicon glyphicon-pencil"></span></button></li>
-    <li class="list-group-item">Phone: {{getFormatedPhone()}}<button class="btn btn-default btn-sm pull-right" (click)="phoneModal.show()"><span class="glyphicon glyphicon-pencil"></span></button></li>
-    <li class="list-group-item">Date Of Birth: {{getFormatedDOB()}}<button class="btn btn-default btn-sm pull-right" (click)="dOBModal.show()"><span class="glyphicon glyphicon-pencil"></span></button></li>
-    <li class="list-group-item">Gender: {{validateService.titleCase(user.gender)}}<button class="btn btn-default btn-sm pull-right" (click)="genderModal.show()"><span class="glyphicon glyphicon-pencil"></span></button></li>
-    <li class="list-group-item">Head of Household: {{validateService.titleCase(getFormatedHOH())}}<button class="btn btn-default btn-sm pull-right" (click)="hOHModal.show()"><span class="glyphicon glyphicon-pencil"></span></button></li>
-    <li class="list-group-item">Skills: {{getList()}}<button class="btn btn-default btn-sm pull-right" (click)="skillsModal.show()"><span class="glyphicon glyphicon-pencil"></span></button></li>
+    <li class="list-group-item">Email: {{user.email}}<button class="btn btn-default btn-sm float-right" (click)="emailModal.show()">Edit</button></li>
+    <li class="list-group-item">Phone: {{getFormatedPhone()}}<button class="btn btn-default btn-sm float-right" (click)="phoneModal.show()">Edit</button></li>
+    <li class="list-group-item">Date Of Birth: {{getFormatedDOB()}}<button class="btn btn-default btn-sm float-right" (click)="dOBModal.show()">Edit</button></li>
+    <li class="list-group-item">Gender: {{validateService.titleCase(user.gender)}}<button class="btn btn-default btn-sm float-right" (click)="genderModal.show()">Edit</button></li>
+    <li class="list-group-item">Head of Household: {{validateService.titleCase(getFormatedHOH())}}<button class="btn btn-default btn-sm float-right" (click)="hOHModal.show()">Edit</button></li>
+    <li class="list-group-item">Skills: {{getList()}}<button class="btn btn-default btn-sm float-right" (click)="skillsModal.show()">Edit</button></li>
     <li class="list-group-item"><button class="btn btn-default" (click)="passwordModal.show()">Change Password</button></li>
   </ul>
   <!-- Email Modal -->

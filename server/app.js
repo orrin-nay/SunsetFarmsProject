@@ -27,8 +27,8 @@ mongoose.connect(config.database, { useMongoClient: true });
 // On Connection
 mongoose.connection.on('connected', () => {
   console.log(`Connected to database ${config.database}`);
-  // enable for dummyinfo
-  // dummyInfo(500);
+  // // enable for dummyinfo
+  // dummyInfo(20000);
 });
 
 // On Error

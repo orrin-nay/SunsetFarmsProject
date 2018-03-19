@@ -172,9 +172,8 @@ module.exports = new GraphQLObjectType({
             error: 'hOH must be true or false',
           };
         }
-        const skills = (await getskills());
         args.skills.forEach((skill) => {
-          if (skills.indexOf(skill) === -1) {
+          if ((await getskills()).indexOf(skill) === -1) {
             return {
               error: 'Invalid Skill',
             };

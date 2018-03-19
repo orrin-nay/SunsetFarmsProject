@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 // User Schema
 const UserSchema = mongoose.Schema({
@@ -7,54 +7,54 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    dropDups: true,
+    dropDups: true
   },
   email: {
     type: String,
     required: false,
     unique: false,
-    dropDups: false,
+    dropDups: false
   },
   password: {
     type: String,
-    required: false,
+    required: false
   },
   phone: {
     type: String,
-    unique: false,
+    unique: false
   },
   // date Of Birth
   dOB: {
-    type: String,
+    type: String
   },
   gender: {
-    type: String,
+    type: String
   },
   // head of house
   hOH: {
-    type: Boolean,
+    type: Boolean
   },
   skills: {
-    type: [String],
+    type: [String]
   },
   admin: {
     type: Boolean,
-    require: false,
-  },
+    require: false
+  }
 });
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model("User", UserSchema);
 module.exports = User;
 
-module.exports.getUserById = function (id, callback) {
+module.exports.getUserById = function(id, callback) {
   User.findById(id, callback);
 };
 
-module.exports.getUserByEmail = function (email, callback) {
+module.exports.getUserByEmail = function(email, callback) {
   const query = { email };
   User.findOne(query, callback);
 };
 
-module.exports.registerUser = function (newUser, callback) {
+module.exports.registerUser = function(newUser, callback) {
   bcrypt.genSalt(10, (saltErr, salt) => {
     bcrypt.hash(newUser.password, salt, (err, hash) => {
       if (err) throw err;
@@ -64,7 +64,7 @@ module.exports.registerUser = function (newUser, callback) {
   });
 };
 
-module.exports.setPassword = function (thisUser, password, callback) {
+module.exports.setPassword = function(thisUser, password, callback) {
   bcrypt.genSalt(10, (saltErr, salt) => {
     bcrypt.hash(password, salt, (err, hash) => {
       if (err) throw err;
@@ -73,55 +73,55 @@ module.exports.setPassword = function (thisUser, password, callback) {
     });
   });
 };
-module.exports.addUser = function (newUser, callback) {
+module.exports.addUser = function(newUser, callback) {
   newUser.save(callback);
 };
 
-module.exports.comparePassword = function (candidatePassword, hash, callback) {
+module.exports.comparePassword = function(candidatePassword, hash, callback) {
   bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
     if (err) throw err;
     callback(null, isMatch);
   });
 };
-module.exports.getUsers = function (callback) {
+module.exports.getUsers = function(callback) {
   User.find(callback);
 };
 
-module.exports.changeEmail = function (user, newEmail, callback) {
+module.exports.changeEmail = function(user, newEmail, callback) {
   user.email = newEmail;
   user.save(callback);
 };
 
-module.exports.changePhone = function (user, phone, callback) {
+module.exports.changePhone = function(user, phone, callback) {
   user.phone = phone;
   user.save(callback);
 };
 
-module.exports.changedOB = function (user, dOB, callback) {
+module.exports.changedOB = function(user, dOB, callback) {
   user.dOB = dOB;
   user.save(callback);
 };
 
-module.exports.changeGender = function (user, gender, callback) {
+module.exports.changeGender = function(user, gender, callback) {
   user.gender = gender;
   user.save(callback);
 };
 
-module.exports.changehOH = function (user, hOH, callback) {
+module.exports.changehOH = function(user, hOH, callback) {
   user.hOH = hOH;
   user.save(callback);
 };
-module.exports.changeAdmin = function (user, admin, callback) {
+module.exports.changeAdmin = function(user, admin, callback) {
   user.admin = admin;
   user.save(callback);
 };
 
-module.exports.removeSkill = function (user, skillIndex, callback) {
+module.exports.removeSkill = function(user, skillIndex, callback) {
   user.skills.splice(skillIndex, 1);
   user.save(callback);
 };
 
-module.exports.addSkill = function (user, skill, callback) {
+module.exports.addSkill = function(user, skill, callback) {
   try {
     if (user.skills.indexOf(skill) === -1) {
       user.skills.push(skill);
@@ -144,13 +144,13 @@ function buildParamatersForFilters(gender, hOH, skills, dates, names) {
   }
 
   if (dates !== undefined) {
-    dates.forEach((date) => {
-      paramaters.push({ dOB: new RegExp(`^${date}`, 'i') });
+    dates.forEach(date => {
+      paramaters.push({ dOB: new RegExp(`^${date}`, "i") });
     }, this);
   }
 
   if (names !== undefined) {
-    names.forEach((nameNew) => {
+    names.forEach(nameNew => {
       paramaters.push({ name: nameNew });
     }, this);
   }
@@ -160,8 +160,21 @@ function buildParamatersForFilters(gender, hOH, skills, dates, names) {
   }
   return paramaters;
 }
-module.exports.getNumberOfUsersByFilters = function (gender, hOH, skills, dates, names, callback) {
-  const paramaters = buildParamatersForFilters(gender, hOH, skills, dates, names);
+module.exports.getNumberOfUsersByFilters = function(
+  gender,
+  hOH,
+  skills,
+  dates,
+  names,
+  callback
+) {
+  const paramaters = buildParamatersForFilters(
+    gender,
+    hOH,
+    skills,
+    dates,
+    names
+  );
   const query = {};
   if (paramaters.length === 0) {
     User.count({}, callback);
@@ -170,10 +183,22 @@ module.exports.getNumberOfUsersByFilters = function (gender, hOH, skills, dates,
     User.count(query, callback);
   }
 };
-module.exports.getUsersByFilters = function (gender, hOH, skills, dates, names, callback) {
-  const paramaters = buildParamatersForFilters(gender, hOH, skills, dates, names);
-  console.log(paramaters);
-  
+module.exports.getUsersByFilters = function(
+  gender,
+  hOH,
+  skills,
+  dates,
+  names,
+  callback
+) {
+  const paramaters = buildParamatersForFilters(
+    gender,
+    hOH,
+    skills,
+    dates,
+    names
+  );
+
   const query = {};
   if (paramaters.length === 0) {
     User.find({}, callback);
@@ -182,6 +207,16 @@ module.exports.getUsersByFilters = function (gender, hOH, skills, dates, names, 
     User.find(query, callback);
   }
 };
-module.exports.getUsersByNameSearch = function (name, callback) {
-  User.find({ name: new RegExp(`^${name}`, 'i') }, callback).select('name _id').limit(3);
+module.exports.removeAffiliation = async function(affiliation) {
+  const query = { skills: affiliation };
+  const users = await User.find(query);
+  users.forEach(user => {
+    user.skills.splice(user.skills.indexOf(affiliation), 1);
+    user.save();
+  });
+};
+module.exports.getUsersByNameSearch = function(name, callback) {
+  User.find({ name: new RegExp(`^${name}`, "i") }, callback)
+    .select("name _id")
+    .limit(3);
 };

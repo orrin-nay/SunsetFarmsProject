@@ -59,3 +59,10 @@ module.exports.SkillsListType = new GraphQLObjectType({
     skills: { type: new GraphQLList(GraphQLString) },
   }),
 });
+module.exports.MessagesListType = new GraphQLObjectType({
+  name: 'messagesList',
+  fields: () => ({
+    error: { type: GraphQLString },
+    messages: { type: new GraphQLList( new GraphQLList(GraphQLString)) },
+  }),
+});

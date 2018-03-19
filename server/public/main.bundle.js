@@ -3,28 +3,33 @@ webpackJsonp(["main"],{
 /***/ "../../../../../../constance.js":
 /***/ (function(module, exports) {
 
-module.exports.ServerAdress = 'https://sunsetfarms.herokuapp.com';
+module.exports.ServerAdress = 'https://sunsetfarm.herokuapp.com'
+;
 
 
 /***/ }),
 
-/***/ "../../../../../src lazy recursive":
+/***/ "../../../../../src/$$_gendir lazy recursive":
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
-	return new Promise(function(resolve, reject) { reject(new Error("Cannot find module '" + req + "'.")); });
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
 }
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
+webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 
 /***/ }),
 
 /***/ "../../../../../src/app/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -233,7 +238,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/components/UserTable/UserTable.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -311,6 +316,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+// tslint:disable:quotemark
 
 
 
@@ -360,15 +366,20 @@ var UserTableComponent = (function () {
     };
     UserTableComponent.prototype.changeEmail = function (emailModal) {
         var _this = this;
-        if (this.newEmail === undefined || this.newEmail === '') {
-            emailModal.setErrorMessage('Please Enter An Email');
+        if (this.newEmail === undefined || this.newEmail === "") {
+            emailModal.setErrorMessage("Please Enter An Email");
             return;
         }
         if (this.validateService.validateEmail(this.newEmail)) {
-            this.authService.changeEmailAdmin(this.newEmail, this.user.id).subscribe(function (data) {
+            this.authService
+                .changeEmailAdmin(this.newEmail, this.user.id)
+                .subscribe(function (data) {
                 if (data.data.ChangeEmailAdmin.success) {
                     _this.user.email = _this.newEmail;
-                    _this.flashMessage.show(data.data.ChangeEmailAdmin.success, { cssClass: 'alert-success', timeout: 12000 });
+                    _this.flashMessage.show(data.data.ChangeEmailAdmin.success, {
+                        cssClass: "alert-success",
+                        timeout: 12000
+                    });
                     emailModal.hide();
                 }
                 else {
@@ -377,21 +388,26 @@ var UserTableComponent = (function () {
             });
         }
         else {
-            emailModal.setErrorMessage('Please Enter A Valid Email');
+            emailModal.setErrorMessage("Please Enter A Valid Email");
         }
     };
     UserTableComponent.prototype.changePhone = function (phoneModal) {
         var _this = this;
-        if (this.newPhone === undefined || this.newPhone === '') {
-            phoneModal.setErrorMessage('Please Enter An Phone');
+        if (this.newPhone === undefined || this.newPhone === "") {
+            phoneModal.setErrorMessage("Please Enter An Phone");
             return;
         }
         if (this.validateService.validatePhone(this.newPhone)) {
             this.newPhone = this.validateService.cleanPhone(this.newPhone);
-            this.authService.changePhoneAdmin(this.newPhone, this.user.id).subscribe(function (data) {
+            this.authService
+                .changePhoneAdmin(this.newPhone, this.user.id)
+                .subscribe(function (data) {
                 if (data.data.ChangePhoneAdmin.success) {
                     _this.user.phone = _this.newPhone;
-                    _this.flashMessage.show(data.data.ChangePhoneAdmin.success, { cssClass: 'alert-success', timeout: 12000 });
+                    _this.flashMessage.show(data.data.ChangePhoneAdmin.success, {
+                        cssClass: "alert-success",
+                        timeout: 12000
+                    });
                     phoneModal.hide();
                 }
                 else {
@@ -400,20 +416,25 @@ var UserTableComponent = (function () {
             });
         }
         else {
-            phoneModal.setErrorMessage('Please Enter A Valid Phone');
+            phoneModal.setErrorMessage("Please Enter A Valid Phone");
         }
     };
     UserTableComponent.prototype.changeDOB = function (dOBModal) {
         var _this = this;
-        if (this.newDOB === undefined || this.newDOB === '') {
-            dOBModal.setErrorMessage('Please Enter A Date Of Birth');
+        if (this.newDOB === undefined || this.newDOB === "") {
+            dOBModal.setErrorMessage("Please Enter A Date Of Birth");
             return;
         }
         if (this.validateService.validateDate(this.newDOB)) {
-            this.authService.changeDOBAdmin(this.newDOB, this.user.id).subscribe(function (data) {
+            this.authService
+                .changeDOBAdmin(this.newDOB, this.user.id)
+                .subscribe(function (data) {
                 if (data.data.ChangeDOBAdmin.success) {
                     _this.user.dOB = _this.newDOB;
-                    _this.flashMessage.show(data.data.ChangeDOBAdmin.success, { cssClass: 'alert-success', timeout: 12000 });
+                    _this.flashMessage.show(data.data.ChangeDOBAdmin.success, {
+                        cssClass: "alert-success",
+                        timeout: 12000
+                    });
                     dOBModal.hide();
                 }
                 else {
@@ -422,20 +443,25 @@ var UserTableComponent = (function () {
             });
         }
         else {
-            dOBModal.setErrorMessage('Please Enter A Valid Date Of Birth');
+            dOBModal.setErrorMessage("Please Enter A Valid Date Of Birth");
         }
     };
     UserTableComponent.prototype.changeGender = function (genderModal) {
         var _this = this;
         if (this.newGender === undefined) {
-            genderModal.setErrorMessage('Please Enter A Gender');
+            genderModal.setErrorMessage("Please Enter A Gender");
             return;
         }
         if (this.validateService.validateGender(this.newGender)) {
-            this.authService.changeGenderAdmin(this.newGender, this.user.id).subscribe(function (data) {
+            this.authService
+                .changeGenderAdmin(this.newGender, this.user.id)
+                .subscribe(function (data) {
                 if (data.data.ChangeGenderAdmin.success) {
                     _this.user.gender = _this.newGender;
-                    _this.flashMessage.show(data.data.ChangeGenderAdmin.success, { cssClass: 'alert-success', timeout: 12000 });
+                    _this.flashMessage.show(data.data.ChangeGenderAdmin.success, {
+                        cssClass: "alert-success",
+                        timeout: 12000
+                    });
                     genderModal.hide();
                 }
                 else {
@@ -444,20 +470,25 @@ var UserTableComponent = (function () {
             });
         }
         else {
-            genderModal.setErrorMessage('Please Enter A Valid Gender');
+            genderModal.setErrorMessage("Please Enter A Valid Gender");
         }
     };
     UserTableComponent.prototype.changeHOH = function (hOHModal) {
         var _this = this;
         if (this.newHOH === undefined) {
-            hOHModal.setErrorMessage('Please Enter If You Are Head Of House Hold');
+            hOHModal.setErrorMessage("Please Enter If You Are Head Of House Hold");
             return;
         }
-        if (!this.validateService.validateHOH(this.newHOH === 'true')) {
-            this.authService.changeHOHAdmin(this.newHOH, this.user.id).subscribe(function (data) {
+        if (!this.validateService.validateHOH(this.newHOH === "true")) {
+            this.authService
+                .changeHOHAdmin(this.newHOH, this.user.id)
+                .subscribe(function (data) {
                 if (data.data.ChangeHOHAdmin.success) {
-                    _this.user.hOH = _this.newHOH === 'true';
-                    _this.flashMessage.show(data.data.ChangeHOHAdmin.success, { cssClass: 'alert-success', timeout: 12000 });
+                    _this.user.hOH = _this.newHOH === "true";
+                    _this.flashMessage.show(data.data.ChangeHOHAdmin.success, {
+                        cssClass: "alert-success",
+                        timeout: 12000
+                    });
                     hOHModal.hide();
                 }
                 else {
@@ -466,19 +497,24 @@ var UserTableComponent = (function () {
             });
         }
         else {
-            hOHModal.setErrorMessage('Please Enter A Head Of House Hold');
+            hOHModal.setErrorMessage("Please Enter A Head Of House Hold");
         }
     };
     UserTableComponent.prototype.changeAdminPrivilege = function (AdminModal) {
         var _this = this;
         if (this.newHOH === undefined) {
-            AdminModal.setErrorMessage('Please Enter Admin Privlage');
+            AdminModal.setErrorMessage("Please Enter Admin Privlage");
             return;
         }
-        this.authService.changeAdminPrivilege(false, this.user.id).subscribe(function (data) {
+        this.authService
+            .changeAdminPrivilege(false, this.user.id)
+            .subscribe(function (data) {
             if (data.data.ChangeAdminPrivilege.success) {
-                _this.user.admin = _this.newAdmin === 'true';
-                _this.flashMessage.show(data.data.ChangeAdminPrivilege.success, { cssClass: 'alert-success', timeout: 12000 });
+                _this.user.admin = _this.newAdmin === "true";
+                _this.flashMessage.show(data.data.ChangeAdminPrivilege.success, {
+                    cssClass: "alert-success",
+                    timeout: 12000
+                });
                 AdminModal.hide();
             }
             else {
@@ -494,7 +530,9 @@ var UserTableComponent = (function () {
                 newSkills = this.user.skills.slice();
                 index = newSkills.indexOf(skill);
                 if (index !== -1) {
-                    this.authService.removeSkillAdmin(skill, this.user.id).subscribe(function (data) { return __awaiter(_this, void 0, void 0, function () {
+                    this.authService
+                        .removeSkillAdmin(skill, this.user.id)
+                        .subscribe(function (data) { return __awaiter(_this, void 0, void 0, function () {
                         var _a;
                         return __generator(this, function (_b) {
                             switch (_b.label) {
@@ -520,12 +558,13 @@ var UserTableComponent = (function () {
     UserTableComponent.prototype.addSkill = function (skillsModal) {
         var _this = this;
         if (this.availableSkills.indexOf(this.newSkill) !== -1) {
-            this.authService.addSkillAdmin(this.newSkill, this.user.id).subscribe(function (data) { return __awaiter(_this, void 0, void 0, function () {
+            this.authService
+                .addSkillAdmin(this.newSkill, this.user.id)
+                .subscribe(function (data) { return __awaiter(_this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
                         case 0:
-                            console.log(data);
                             if (!data.data.AddSkillAdmin.success) return [3 /*break*/, 2];
                             try {
                                 if (this.user.skills.indexOf(this.newSkill) === -1) {
@@ -540,7 +579,7 @@ var UserTableComponent = (function () {
                             return [4 /*yield*/, this.skillsService.getSkills(this.user.skills)];
                         case 1:
                             _a.availableSkills = _b.sent();
-                            this.newSkill = '';
+                            this.newSkill = "";
                             this.skillSearchChange();
                             return [3 /*break*/, 3];
                         case 2:
@@ -552,31 +591,31 @@ var UserTableComponent = (function () {
             }); });
         }
         else {
-            skillsModal.setErrorMessage('Invalid Skill');
+            skillsModal.setErrorMessage("Invalid Skill");
         }
     };
     UserTableComponent.prototype.getFormatedDOB = function (user) {
         var date = user.dOB.slice(5, 7);
-        date += '/';
+        date += "/";
         date += user.dOB.slice(8, 10);
-        date += '/';
+        date += "/";
         date += user.dOB.slice(0, 4);
         return date;
     };
     UserTableComponent.prototype.getFormatedPhone = function (user) {
-        var phone = '(';
+        var phone = "(";
         phone += user.phone.slice(0, 3);
-        phone += ') ';
+        phone += ") ";
         phone += user.phone.slice(3, 6);
-        phone += '-';
+        phone += "-";
         phone += user.phone.slice(6, 11);
         return phone;
     };
     UserTableComponent.prototype.getFormatedHOH = function (user) {
-        if (user.hOH.toString() === 'true') {
-            return 'yes';
+        if (user.hOH.toString() === "true") {
+            return "yes";
         }
-        return 'no';
+        return "no";
     };
     return UserTableComponent;
 }());
@@ -586,7 +625,7 @@ __decorate([
 ], UserTableComponent.prototype, "users", void 0);
 UserTableComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
-        selector: 'app-user-table',
+        selector: "app-user-table",
         template: __webpack_require__("../../../../../src/app/components/UserTable/UserTable.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/UserTable/UserTable.component.css")]
     }),
@@ -601,7 +640,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/dashboard/compose/dashboard.compose.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -619,7 +658,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/dashboard/compose/dashboard.compose.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1 class=\"page-header\">Dashboard</h1>\n<form (submit)=\"submit()\">\n    <div class=\"form-group\">\n        <label>Subject</label>\n        <input type=\"text\" [(ngModel)]=\"subject\" name=\"subject\" class=\"form-control\" placeholder=\"Add Subject\" (ngModelChange)=\"saveMessage()\">\n    </div>\n    <div class=\"form-group\">\n        <label>Message</label>\n        <textarea type=\"text\" [(ngModel)]=\"message\" name=\"message\" class=\"form-control\" placeholder=\"Add Message\" (ngModelChange)=\"saveMessage()\"></textarea>\n    </div>\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Next\">\n</form>"
+module.exports = "<h1 class=\"page-header\">Dashboard</h1>\r\n<form (submit)=\"submit()\">\r\n    <div class=\"form-group\">\r\n        <label>Subject</label>\r\n        <input type=\"text\" [(ngModel)]=\"subject\" name=\"subject\" class=\"form-control\" placeholder=\"Add Subject\" (ngModelChange)=\"saveMessage()\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label>Message</label>\r\n        <textarea type=\"text\" [(ngModel)]=\"message\" name=\"message\" class=\"form-control\" placeholder=\"Add Message\" (ngModelChange)=\"saveMessage()\"></textarea>\r\n    </div>\r\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Next\">\r\n</form>"
 
 /***/ }),
 
@@ -685,7 +724,7 @@ var _a, _b;
 /***/ "../../../../../src/app/components/dashboard/dashboard.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -798,7 +837,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/dashboard/filters/dashboard.filters.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -816,7 +855,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/dashboard/filters/dashboard.filters.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1 class=\"page-header\">Dashboard</h1>\r\n<form (submit)=\"addFillter()\" class=\"form-inline\">\r\n    <div class=\"form-group\">\r\n      <input  [(ngModel)]=\"filterField\" name=\"filterField\" type=\"tel\" class=\"form-control\" \r\n      placeholder=\"Filter By Gender Head Of House Birth Year Or Skills\" list=\"suggestedFilters\" (ngModelChange)=\"filterSearchChange()\" autocomplete=\"off\">\r\n      <datalist id=\"suggestedFilters\">\r\n        <option *ngFor=\"let filterSuggestion of filterSuggestions\" value=\"{{filterSuggestion}}\">\r\n      </datalist>\r\n      <input type=\"submit\" class=\"btn btn-primary\" value=\"Add\" [disabled]=\"!canSubmit\">\r\n    </div>\r\n    <p class=\"pull-right\">{{numberOfRecipients}} Results</p>\r\n</form>\r\n<h1 class=\"lable-holder\">\r\n    <span class=\"label label-primary filter\" *ngFor=\"let filter of filters\">\r\n        {{filter}}<button (click)=\"removeFilter(filter)\" class=\"btn btn-primary remove-btn\">&times;</button></span>\r\n</h1>\r\n<p class=\"clear-fix\"></p>\r\n<br>\r\n<hr>\r\n  \r\n<form (submit)=\"AreYouSureModal.show()\">\r\n    <div class=\"form-group\">\r\n        <input type=\"submit\" class=\"btn btn-primary\" value=\"Finished\">\r\n    </div>\r\n</form>\r\n  <!-- hOH Modal -->\r\n  <app-modal #AreYouSureModal>\r\n        <div class=\"app-modal-header\">\r\n          Are you sure?\r\n        </div>\r\n        <div class=\"app-modal-body\">\r\n                <h2>Are you sure you want to send this message to {{numberOfRecipients}} recipients?</h2>\r\n        </div>\r\n        <div class=\"app-modal-footer\">\r\n          <button type=\"button\" class=\"btn btn-default\" (click)=\"AreYouSureModal.hide()\">No</button>\r\n          <button type=\"button\" class=\"btn btn-primary\" (click)=sendMessage(AreYouSureModal)>Yes</button>\r\n        </div>\r\n      </app-modal>\r\n      <app-user-table [users] = \"users\"></app-user-table>"
+module.exports = "<h1 class=\"page-header\">Dashboard</h1>\r\n<form (submit)=\"addFillter()\" class=\"form-inline\">\r\n  <div class=\"form-group\">\r\n    <input [(ngModel)]=\"filterField\" name=\"filterField\" type=\"text\" class=\"form-control\" placeholder=\"Filter By Gender Head Of House Birth Year Or Skills\"\r\n      list=\"suggestedFilters\" (ngModelChange)=\"filterSearchChange()\" autocomplete=\"off\">\r\n    <datalist id=\"suggestedFilters\">\r\n      <option *ngFor=\"let filterSuggestion of filterSuggestions\" value=\"{{filterSuggestion}}\">\r\n    </datalist>\r\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Add\" [disabled]=\"!canSubmit\">\r\n  </div>\r\n  <p class=\"pull-right\">{{numberOfRecipients}} Results</p>\r\n</form>\r\n<h1 class=\"lable-holder\">\r\n  <span class=\"label label-primary filter\" *ngFor=\"let filter of filters\">\r\n    {{filter}}\r\n    <button (click)=\"removeFilter(filter)\" class=\"btn btn-primary remove-btn\">&times;</button>\r\n  </span>\r\n</h1>\r\n<p class=\"clear-fix\"></p>\r\n<br>\r\n<hr>\r\n\r\n<form (submit)=\"AreYouSureModal.show()\">\r\n  <div class=\"form-group\">\r\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Finished\">\r\n  </div>\r\n</form>\r\n<!-- hOH Modal -->\r\n<app-modal #AreYouSureModal>\r\n  <div class=\"app-modal-header\">\r\n    Are you sure?\r\n  </div>\r\n  <div class=\"app-modal-body\">\r\n    <h2>Are you sure you want to send this message to {{numberOfRecipients}} recipients?</h2>\r\n  </div>\r\n  <div class=\"app-modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default\" (click)=\"AreYouSureModal.hide()\">No</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" (click)=sendMessage(AreYouSureModal)>Yes</button>\r\n  </div>\r\n</app-modal>\r\n<app-user-table [users]=\"users\"></app-user-table>\r\n"
 
 /***/ }),
 
@@ -858,13 +897,17 @@ var DashboardFiltersComponent = (function () {
         this.skillsService = skillsService;
         this.router = router;
         this.skillsService.getSkillsList().then(function (skills) {
-            _this.posibleFilterSuggestions = skills.concat(['Male', 'Female', 'Head Of Household', 'Not Head Of Household']);
+            _this.posibleFilterSuggestions = skills.concat([
+                "Male",
+                "Female",
+                "Head Of Household",
+                "Not Head Of Household"
+            ]);
         });
         try {
-            this.filters = JSON.parse(localStorage.getItem('filters'));
+            this.filters = JSON.parse(localStorage.getItem("filters"));
         }
-        catch (error) {
-        }
+        catch (error) { }
         if (!this.filters) {
             this.filters = [];
         }
@@ -872,8 +915,7 @@ var DashboardFiltersComponent = (function () {
         this.canSubmit = false;
         this.getFilterResults();
     }
-    DashboardFiltersComponent.prototype.ngOnInit = function () {
-    };
+    DashboardFiltersComponent.prototype.ngOnInit = function () { };
     DashboardFiltersComponent.prototype.filterSearchChange = function () {
         this.filterField = this.validateService.titleCase(this.filterField);
         if (this.filters.indexOf(this.filterField) !== -1) {
@@ -883,9 +925,9 @@ var DashboardFiltersComponent = (function () {
         if (this.filterSuggestions.indexOf(this.filterField) !== -1) {
             this.canSubmit = true;
         }
-        else if (parseInt(this.filterField, 0) <= new Date().getUTCFullYear()
-            && parseInt(this.filterField, 0) > 1900
-            && (this.filters.indexOf(this.filterField) === -1)) {
+        else if (parseInt(this.filterField, 0) <= new Date().getUTCFullYear() &&
+            parseInt(this.filterField, 0) > 1900 &&
+            this.filters.indexOf(this.filterField) === -1) {
             this.canSubmit = true;
         }
         else {
@@ -897,16 +939,17 @@ var DashboardFiltersComponent = (function () {
         if (this.filterSuggestions.indexOf(this.filterField) !== -1) {
             this.addToFiltersArray();
         }
-        else if (parseInt(this.filterField, 0) <= new Date().getUTCFullYear() && parseInt(this.filterField, 0) > 1900) {
+        else if (parseInt(this.filterField, 0) <= new Date().getUTCFullYear() &&
+            parseInt(this.filterField, 0) > 1900) {
             this.addToFiltersArray();
         }
         this.getFilterResults();
     };
     DashboardFiltersComponent.prototype.addToFiltersArray = function () {
         this.filters.push(this.filterField);
-        this.filterField = '';
+        this.filterField = "";
         this.canSubmit = false;
-        localStorage.setItem('filters', JSON.stringify(this.filters));
+        localStorage.setItem("filters", JSON.stringify(this.filters));
         this.updateFilterSujestions();
     };
     DashboardFiltersComponent.prototype.removeFilter = function (filter) {
@@ -914,7 +957,7 @@ var DashboardFiltersComponent = (function () {
         if (index !== -1) {
             this.filters.splice(index, 1);
         }
-        localStorage.setItem('filters', JSON.stringify(this.filters));
+        localStorage.setItem("filters", JSON.stringify(this.filters));
         this.updateFilterSujestions();
         this.getFilterResults();
     };
@@ -928,22 +971,25 @@ var DashboardFiltersComponent = (function () {
                 _this.filterSuggestions.splice(index, 1);
             }
         });
-        if (this.filters.indexOf('Male') !== -1) {
-            this.filterSuggestions.splice(this.filterSuggestions.indexOf('Female'), 1);
+        if (this.filters.indexOf("Male") !== -1) {
+            this.filterSuggestions.splice(this.filterSuggestions.indexOf("Female"), 1);
         }
-        if (this.filters.indexOf('Female') !== -1) {
-            this.filterSuggestions.splice(this.filterSuggestions.indexOf('Male'), 1);
+        if (this.filters.indexOf("Female") !== -1) {
+            this.filterSuggestions.splice(this.filterSuggestions.indexOf("Male"), 1);
         }
-        if (this.filters.indexOf('Head Of Household') !== -1) {
-            this.filterSuggestions.splice(this.filterSuggestions.indexOf('Not Head Of Household'), 1);
+        if (this.filters.indexOf("Head Of Household") !== -1) {
+            this.filterSuggestions.splice(this.filterSuggestions.indexOf("Not Head Of Household"), 1);
         }
-        if (this.filters.indexOf('Not Head Of Household') !== -1) {
-            this.filterSuggestions.splice(this.filterSuggestions.indexOf('Head Of Household'), 1);
+        if (this.filters.indexOf("Not Head Of Household") !== -1) {
+            this.filterSuggestions.splice(this.filterSuggestions.indexOf("Head Of Household"), 1);
         }
-        if (this.filterField !== '' && this.filterField !== undefined) {
+        if (this.filterField !== "" && this.filterField !== undefined) {
             this.authService.searchUsers(this.filterField).subscribe(function (data) {
                 if (data.data.SearchUser.error) {
-                    _this.flashMessage.show(data.data.SearchUser.error, { cssClass: 'alert-danger', timeout: 3000 });
+                    _this.flashMessage.show(data.data.SearchUser.error, {
+                        cssClass: "alert-danger",
+                        timeout: 3000
+                    });
                 }
                 else if (data.data.SearchUser.results) {
                     _this.filterSuggestions = _this.filterSuggestions.concat(data.data.SearchUser.results);
@@ -953,60 +999,83 @@ var DashboardFiltersComponent = (function () {
     };
     DashboardFiltersComponent.prototype.getFilterResults = function () {
         var _this = this;
-        this.authService.getFilterResultsNumber([].concat(this.filters)).subscribe(function (data) {
-            if (data.data.FilterResultsNumber.success) {
-                _this.numberOfRecipients = data.data.FilterResultsNumber.success;
-            }
-            else if (data.data.FilterResultsNumber.error) {
-                _this.flashMessage.show(data.data.ErrorSuccess.error, { cssClass: 'alert-danger', timeout: 3000 });
-            }
+        this.authService
+            .getFilterResultsNumber([].concat(this.filters))
+            .then(function (value) {
+            value.subscribe(function (data) {
+                if (data.data.FilterResultsNumber.success) {
+                    _this.numberOfRecipients = data.data.FilterResultsNumber.success;
+                }
+                else if (data.data.FilterResultsNumber.error) {
+                    _this.flashMessage.show(data.data.ErrorSuccess.error, {
+                        cssClass: "alert-danger",
+                        timeout: 3000
+                    });
+                }
+            });
         });
-        this.authService.getFilterResults([].concat(this.filters)).subscribe(function (data) {
-            if (data.data.FilterResults.success) {
-                _this.users = [];
-                data.data.FilterResults.success.forEach(function (user) {
-                    var newUser = new __WEBPACK_IMPORTED_MODULE_5__types_User__["a" /* User */]();
-                    newUser.name = user.name;
-                    newUser.email = user.email;
-                    newUser.password = user.password;
-                    newUser.phone = user.phone;
-                    // date Of Birth
-                    newUser.dOB = user.dOB;
-                    newUser.gender = user.gender;
-                    // head of house
-                    newUser.hOH = user.hOH;
-                    newUser.skills = user.skills;
-                    newUser.admin = user.admin;
-                    newUser.id = user.id;
-                    _this.users.push(newUser);
-                });
-            }
-            else if (data.data.FilterResults.error) {
-                _this.flashMessage.show(data.data.ErrorSuccess.error, { cssClass: 'alert-danger', timeout: 3000 });
-            }
+        this.authService.getFilterResults([].concat(this.filters)).then(function (value) {
+            value.subscribe(function (data) {
+                if (data.data.FilterResults.success) {
+                    _this.users = [];
+                    data.data.FilterResults.success.forEach(function (user) {
+                        var newUser = new __WEBPACK_IMPORTED_MODULE_5__types_User__["a" /* User */]();
+                        newUser.name = user.name;
+                        newUser.email = user.email;
+                        newUser.password = user.password;
+                        newUser.phone = user.phone;
+                        // date Of Birth
+                        newUser.dOB = user.dOB;
+                        newUser.gender = user.gender;
+                        // head of house
+                        newUser.hOH = user.hOH;
+                        newUser.skills = user.skills;
+                        newUser.admin = user.admin;
+                        newUser.id = user.id;
+                        _this.users.push(newUser);
+                    });
+                }
+                else if (data.data.FilterResults.error) {
+                    _this.flashMessage.show(data.data.ErrorSuccess.error, {
+                        cssClass: "alert-danger",
+                        timeout: 3000
+                    });
+                }
+            });
         });
     };
     DashboardFiltersComponent.prototype.sendMessage = function (areYouSureModal) {
         var _this = this;
         areYouSureModal.hide();
-        this.authService.sendMessage([].concat(this.filters), localStorage.getItem('subject'), localStorage.getItem('message')).then(function (data) {
-            if (data.data.SendMessage.success) {
-                _this.flashMessage.show(data.data.SendMessage.success, { cssClass: 'alert-success', timeout: 3000 });
-                localStorage.setItem('subject', '');
-                localStorage.setItem('message', '');
-                localStorage.setItem('filters', '');
-                _this.router.navigate(['dashboard/']);
-            }
-            else if (data.data.SendMessage.error) {
-                _this.flashMessage.show(data.data.SendMessage.error, { cssClass: 'alert-danger', timeout: 3000 });
-            }
+        this.authService
+            .sendMessage([].concat(this.filters), localStorage.getItem("subject"), localStorage.getItem("message"))
+            .then(function (value) {
+            value.subscribe(function (data) {
+                console.log(data);
+                if (data.data.SendMessage.success) {
+                    _this.flashMessage.show(data.data.SendMessage.success, {
+                        cssClass: "alert-success",
+                        timeout: 3000
+                    });
+                    localStorage.setItem("subject", "");
+                    localStorage.setItem("message", "");
+                    localStorage.setItem("filters", "");
+                    _this.router.navigate(["dashboard/"]);
+                }
+                else if (data.data.SendMessage.error) {
+                    _this.flashMessage.show(data.data.SendMessage.error, {
+                        cssClass: "alert-danger",
+                        timeout: 3000
+                    });
+                }
+            });
         });
     };
     return DashboardFiltersComponent;
 }());
 DashboardFiltersComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
-        selector: 'app-dashboard.filters',
+        selector: "app-dashboard.filters",
         template: __webpack_require__("../../../../../src/app/components/dashboard/filters/dashboard.filters.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/dashboard/filters/dashboard.filters.component.css")]
     }),
@@ -1021,7 +1090,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/components/dashboard/manageAffiliations/manageAffiliations.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -1039,7 +1108,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/dashboard/manageAffiliations/manageAffiliations.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  manageAffiliations works!\n</p>"
+module.exports = "<ul class=\"list-group\">\r\n  <li class=\"list-group-item\" *ngFor=\"let affiliation of skills\">{{affiliation}}\r\n    <button class=\"btn btn-default btn-sm pull-right\" (click)=\"currentAffiliation(affiliation); areYouSureModal.show()\">\r\n      <span class=\"badge\">X</span>\r\n    </button>\r\n  </li>\r\n  <li class=\"list-group-item\">\r\n    <form (submit)=\"addAffiliation()\" class=\"form-inline\">\r\n      <div class=\"form-group\">\r\n        <input [(ngModel)]=\"affiliationField\" name=\"affiliationField\" type=\"text\" class=\"form-control\" placeholder=\"Add Affiliation\"\r\n          (ngModelChange)=\"addAffiliationChange()\">\r\n        <input type=\"submit\" class=\"btn btn-primary\" value=\"Add\" [disabled]=\"!canSubmit\">\r\n      </div>\r\n    </form>\r\n  </li>\r\n</ul>\r\n\r\n<app-modal #areYouSureModal>\r\n  <div class=\"app-modal-header\">\r\n    Remove Affiliation\r\n  </div>\r\n  <div class=\"app-modal-body\">\r\n    <p>Are you sure you want to remove the affiliation {{affiliationToBeRemoved}}</p>\r\n  </div>\r\n  <div class=\"app-modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default\" (click)=\"areYouSureModal.hide()\">No</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" (click)=removeAffiliation(areYouSureModal)>Yes</button>\r\n  </div>\r\n</app-modal>\r\n"
 
 /***/ }),
 
@@ -1049,6 +1118,10 @@ module.exports = "<p>\n  manageAffiliations works!\n</p>"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ManageAffiliationsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_skills_service__ = __webpack_require__("../../../../../src/app/services/skills.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1058,23 +1131,164 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
 
 var ManageAffiliationsComponent = (function () {
-    function ManageAffiliationsComponent() {
+    function ManageAffiliationsComponent(skillsService, authService, flashMessage) {
+        this.skillsService = skillsService;
+        this.authService = authService;
+        this.flashMessage = flashMessage;
     }
     ManageAffiliationsComponent.prototype.ngOnInit = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getSkills()];
+                    case 1:
+                        _a.sent();
+                        this.addAffiliationChange();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ManageAffiliationsComponent.prototype.addAffiliationChange = function () {
+        this.canSubmit = true;
+        if (!this.affiliationField) {
+            this.canSubmit = false;
+            return;
+        }
+        this.affiliationField = this.affiliationField
+            .toLowerCase()
+            .split(" ")
+            .map(function (word) {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+            .join(" ");
+        if (this.affiliationField.length === 0) {
+            this.canSubmit = false;
+            return;
+        }
+        var upperCaseSkills = this.skills.map(function (value) {
+            return value.toUpperCase();
+        });
+        if (upperCaseSkills.indexOf(this.affiliationField.toUpperCase()) !== -1) {
+            this.canSubmit = false;
+            return;
+        }
+    };
+    ManageAffiliationsComponent.prototype.addAffiliation = function () {
+        var _this = this;
+        this.authService
+            .addAffiliationAdmin(this.affiliationField)
+            .subscribe(function (data) {
+            if (data.data.AddAffiliationAdmin.success) {
+                _this.flashMessage.show("Added Affiliation " + _this.affiliationField, {
+                    cssClass: "alert-success",
+                    timeout: 3000
+                });
+                _this.skills.push(_this.affiliationField);
+                _this.affiliationField = "";
+            }
+            else if (data.data.AddAffiliationAdmin.error) {
+                _this.flashMessage.show(data.data.AddAffiliationAdmin.error, {
+                    cssClass: "alert-danger",
+                    timeout: 3000
+                });
+            }
+        });
+    };
+    ManageAffiliationsComponent.prototype.removeAffiliation = function (AreYouSureModal) {
+        var _this = this;
+        AreYouSureModal.hide();
+        this.authService
+            .removeAffiliationAdmin(this.affiliationToBeRemoved)
+            .subscribe(function (data) {
+            if (data.data.RemoveAffiliationAdmin.success) {
+                _this.flashMessage.show("Removed Affiliation " + _this.affiliationToBeRemoved, {
+                    cssClass: "alert-success",
+                    timeout: 3000
+                });
+                _this.skills.splice(_this.skills.indexOf(_this.affiliationToBeRemoved), 1);
+                _this.affiliationToBeRemoved = "";
+            }
+            else if (data.data.RemoveAffiliationAdmin.error) {
+                _this.flashMessage.show(data.data.RemoveAffiliationAdmin.error, {
+                    cssClass: "alert-danger",
+                    timeout: 3000
+                });
+            }
+        });
+    };
+    ManageAffiliationsComponent.prototype.getSkills = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.skills = [];
+                        return [4 /*yield*/, this.skillsService.getSkillsList()];
+                    case 1:
+                        (_a.sent()).forEach(function (skill) {
+                            _this.skills.push(skill);
+                        });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ManageAffiliationsComponent.prototype.currentAffiliation = function (affiliation) {
+        this.affiliationToBeRemoved = affiliation;
     };
     return ManageAffiliationsComponent;
 }());
 ManageAffiliationsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-manageAffiliations',
+        selector: "app-manageAffiliations",
         template: __webpack_require__("../../../../../src/app/components/dashboard/manageAffiliations/manageAffiliations.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/dashboard/manageAffiliations/manageAffiliations.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_skills_service__["a" /* SkillsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_skills_service__["a" /* SkillsService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"]) === "function" && _c || Object])
 ], ManageAffiliationsComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=manageAffiliations.component.js.map
 
 /***/ }),
@@ -1082,7 +1296,7 @@ ManageAffiliationsComponent = __decorate([
 /***/ "../../../../../src/app/components/dashboard/manageUsers/manageUsers.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -1100,7 +1314,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/dashboard/manageUsers/manageUsers.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1 class=\"page-header\">Dashboard</h1>\n<form (submit)=\"addFillter()\" class=\"form-inline\">\n    <div class=\"form-group\">\n      <input  [(ngModel)]=\"filterField\" name=\"filterField\" type=\"tel\" class=\"form-control\" \n      placeholder=\"Filter By Gender Head Of House Birth Year Or Skills\" list=\"suggestedFilters\" (ngModelChange)=\"filterSearchChange()\" autocomplete=\"off\">\n      <datalist id=\"suggestedFilters\">\n        <option *ngFor=\"let filterSuggestion of filterSuggestions\" value=\"{{filterSuggestion}}\">\n      </datalist>\n      <input type=\"submit\" class=\"btn btn-primary\" value=\"Add\" [disabled]=\"!canSubmit\">\n    </div>\n</form>\n<h1 class=\"lable-holder\">\n    <span class=\"label label-primary filter\" *ngFor=\"let filter of filters\">\n        {{filter}}<button (click)=\"removeFilter(filter)\" class=\"btn btn-primary remove-btn\">&times;</button></span>\n</h1>\n<p class=\"clear-fix\"></p>\n<br>\n<hr>\n\n<app-user-table [users] = \"users\"></app-user-table>"
+module.exports = "<h1 class=\"page-header\">Dashboard</h1>\r\n<form (submit)=\"addFillter()\" class=\"form-inline\">\r\n    <div class=\"form-group\">\r\n      <input  [(ngModel)]=\"filterField\" name=\"filterField\" type=\"tel\" class=\"form-control\" \r\n      placeholder=\"Filter By Gender Head Of House Birth Year Or Skills\" list=\"suggestedFilters\" (ngModelChange)=\"filterSearchChange()\" autocomplete=\"off\">\r\n      <datalist id=\"suggestedFilters\">\r\n        <option *ngFor=\"let filterSuggestion of filterSuggestions\" value=\"{{filterSuggestion}}\">\r\n      </datalist>\r\n      <input type=\"submit\" class=\"btn btn-primary\" value=\"Add\" [disabled]=\"!canSubmit\">\r\n    </div>\r\n</form>\r\n<h1 class=\"lable-holder\">\r\n    <span class=\"label label-primary filter\" *ngFor=\"let filter of filters\">\r\n        {{filter}}<button (click)=\"removeFilter(filter)\" class=\"btn btn-primary remove-btn\">&times;</button></span>\r\n</h1>\r\n<p class=\"clear-fix\"></p>\r\n<br>\r\n<hr>\r\n\r\n<app-user-table [users] = \"users\"></app-user-table>"
 
 /***/ }),
 
@@ -1142,13 +1356,17 @@ var ManageUsersComponent = (function () {
         this.flashMessage = flashMessage;
         this.router = router;
         this.skillsService.getSkillsList().then(function (skills) {
-            _this.posibleFilterSuggestions = skills.concat(['Male', 'Female', 'Head Of Household', 'Not Head Of Household']);
+            _this.posibleFilterSuggestions = skills.concat([
+                "Male",
+                "Female",
+                "Head Of Household",
+                "Not Head Of Household"
+            ]);
         });
         try {
-            this.filters = JSON.parse(localStorage.getItem('filters'));
+            this.filters = JSON.parse(localStorage.getItem("filters"));
         }
-        catch (error) {
-        }
+        catch (error) { }
         if (!this.filters) {
             this.filters = [];
         }
@@ -1156,8 +1374,7 @@ var ManageUsersComponent = (function () {
         this.canSubmit = false;
         this.getFilterResults();
     }
-    ManageUsersComponent.prototype.ngOnInit = function () {
-    };
+    ManageUsersComponent.prototype.ngOnInit = function () { };
     ManageUsersComponent.prototype.filterSearchChange = function () {
         this.filterField = this.validateService.titleCase(this.filterField);
         if (this.filters.indexOf(this.filterField) !== -1) {
@@ -1167,9 +1384,9 @@ var ManageUsersComponent = (function () {
         if (this.filterSuggestions.indexOf(this.filterField) !== -1) {
             this.canSubmit = true;
         }
-        else if (parseInt(this.filterField, 0) <= new Date().getUTCFullYear()
-            && parseInt(this.filterField, 0) > 1900
-            && (this.filters.indexOf(this.filterField) === -1)) {
+        else if (parseInt(this.filterField, 0) <= new Date().getUTCFullYear() &&
+            parseInt(this.filterField, 0) > 1900 &&
+            this.filters.indexOf(this.filterField) === -1) {
             this.canSubmit = true;
         }
         else {
@@ -1181,16 +1398,17 @@ var ManageUsersComponent = (function () {
         if (this.filterSuggestions.indexOf(this.filterField) !== -1) {
             this.addToFiltersArray();
         }
-        else if (parseInt(this.filterField, 0) <= new Date().getUTCFullYear() && parseInt(this.filterField, 0) > 1900) {
+        else if (parseInt(this.filterField, 0) <= new Date().getUTCFullYear() &&
+            parseInt(this.filterField, 0) > 1900) {
             this.addToFiltersArray();
         }
         this.getFilterResults();
     };
     ManageUsersComponent.prototype.addToFiltersArray = function () {
         this.filters.push(this.filterField);
-        this.filterField = '';
+        this.filterField = "";
         this.canSubmit = false;
-        localStorage.setItem('filters', JSON.stringify(this.filters));
+        localStorage.setItem("filters", JSON.stringify(this.filters));
         this.updateFilterSujestions();
     };
     ManageUsersComponent.prototype.removeFilter = function (filter) {
@@ -1198,7 +1416,7 @@ var ManageUsersComponent = (function () {
         if (index !== -1) {
             this.filters.splice(index, 1);
         }
-        localStorage.setItem('filters', JSON.stringify(this.filters));
+        localStorage.setItem("filters", JSON.stringify(this.filters));
         this.updateFilterSujestions();
         this.getFilterResults();
     };
@@ -1212,22 +1430,25 @@ var ManageUsersComponent = (function () {
                 _this.filterSuggestions.splice(index, 1);
             }
         });
-        if (this.filters.indexOf('Male') !== -1) {
-            this.filterSuggestions.splice(this.filterSuggestions.indexOf('Female'), 1);
+        if (this.filters.indexOf("Male") !== -1) {
+            this.filterSuggestions.splice(this.filterSuggestions.indexOf("Female"), 1);
         }
-        if (this.filters.indexOf('Female') !== -1) {
-            this.filterSuggestions.splice(this.filterSuggestions.indexOf('Male'), 1);
+        if (this.filters.indexOf("Female") !== -1) {
+            this.filterSuggestions.splice(this.filterSuggestions.indexOf("Male"), 1);
         }
-        if (this.filters.indexOf('Head Of Household') !== -1) {
-            this.filterSuggestions.splice(this.filterSuggestions.indexOf('Not Head Of Household'), 1);
+        if (this.filters.indexOf("Head Of Household") !== -1) {
+            this.filterSuggestions.splice(this.filterSuggestions.indexOf("Not Head Of Household"), 1);
         }
-        if (this.filters.indexOf('Not Head Of Household') !== -1) {
-            this.filterSuggestions.splice(this.filterSuggestions.indexOf('Head Of Household'), 1);
+        if (this.filters.indexOf("Not Head Of Household") !== -1) {
+            this.filterSuggestions.splice(this.filterSuggestions.indexOf("Head Of Household"), 1);
         }
-        if (this.filterField !== '' && this.filterField !== undefined) {
+        if (this.filterField !== "" && this.filterField !== undefined) {
             this.authService.searchUsers(this.filterField).subscribe(function (data) {
                 if (data.data.SearchUser.error) {
-                    _this.flashMessage.show(data.data.SearchUser.error, { cssClass: 'alert-danger', timeout: 3000 });
+                    _this.flashMessage.show(data.data.SearchUser.error, {
+                        cssClass: "alert-danger",
+                        timeout: 3000
+                    });
                 }
                 else if (data.data.SearchUser.results) {
                     _this.filterSuggestions = _this.filterSuggestions.concat(data.data.SearchUser.results);
@@ -1237,52 +1458,72 @@ var ManageUsersComponent = (function () {
     };
     ManageUsersComponent.prototype.getFilterResults = function () {
         var _this = this;
-        this.authService.getFilterResultsNumber([].concat(this.filters)).subscribe(function (data) {
-            if (data.data.FilterResultsNumber.success) {
-                _this.numberOfRecipients = data.data.FilterResultsNumber.success;
-            }
-            else if (data.data.FilterResultsNumber.error) {
-                _this.flashMessage.show(data.data.ErrorSuccess.error, { cssClass: 'alert-danger', timeout: 3000 });
-            }
+        this.authService
+            .getFilterResultsNumber([].concat(this.filters))
+            .then(function (value) {
+            value.subscribe(function (data) {
+                if (data.data.FilterResultsNumber.success) {
+                    _this.numberOfRecipients = data.data.FilterResultsNumber.success;
+                }
+                else if (data.data.FilterResultsNumber.error) {
+                    _this.flashMessage.show(data.data.ErrorSuccess.error, {
+                        cssClass: "alert-danger",
+                        timeout: 3000
+                    });
+                }
+            });
         });
-        this.authService.getFilterResults([].concat(this.filters)).subscribe(function (data) {
-            if (data.data.FilterResults.success) {
-                _this.users = [];
-                data.data.FilterResults.success.forEach(function (user) {
-                    var newUser = new __WEBPACK_IMPORTED_MODULE_5__types_User__["a" /* User */]();
-                    newUser.name = user.name;
-                    newUser.email = user.email;
-                    newUser.password = user.password;
-                    newUser.phone = user.phone;
-                    // date Of Birth
-                    newUser.dOB = user.dOB;
-                    newUser.gender = user.gender;
-                    // head of house
-                    newUser.hOH = user.hOH;
-                    newUser.skills = user.skills;
-                    newUser.admin = user.admin;
-                    newUser.id = user.id;
-                    _this.users.push(newUser);
-                });
-            }
-            else if (data.data.FilterResults.error) {
-                _this.flashMessage.show(data.data.ErrorSuccess.error, { cssClass: 'alert-danger', timeout: 3000 });
-            }
+        this.authService.getFilterResults([].concat(this.filters)).then(function (value) {
+            value.subscribe(function (data) {
+                if (data.data.FilterResults.success) {
+                    _this.users = [];
+                    data.data.FilterResults.success.forEach(function (user) {
+                        var newUser = new __WEBPACK_IMPORTED_MODULE_5__types_User__["a" /* User */]();
+                        newUser.name = user.name;
+                        newUser.email = user.email;
+                        newUser.password = user.password;
+                        newUser.phone = user.phone;
+                        // date Of Birth
+                        newUser.dOB = user.dOB;
+                        newUser.gender = user.gender;
+                        // head of house
+                        newUser.hOH = user.hOH;
+                        newUser.skills = user.skills;
+                        newUser.admin = user.admin;
+                        newUser.id = user.id;
+                        _this.users.push(newUser);
+                    });
+                }
+                else if (data.data.FilterResults.error) {
+                    _this.flashMessage.show(data.data.ErrorSuccess.error, {
+                        cssClass: "alert-danger",
+                        timeout: 3000
+                    });
+                }
+            });
         });
     };
     ManageUsersComponent.prototype.sendMessage = function (areYouSureModal) {
         var _this = this;
         areYouSureModal.hide();
-        this.authService.sendMessage([].concat(this.filters), localStorage.getItem('subject'), localStorage.getItem('message')).then(function (data) {
+        this.authService
+            .sendMessage([].concat(this.filters), localStorage.getItem("subject"), localStorage.getItem("message"))
+            .then(function (data) {
             if (data.data.SendMessage.success) {
-                _this.flashMessage.show(data.data.SendMessage.success, { cssClass: 'alert-success', timeout: 3000 });
-                localStorage.setItem('subject', '');
-                localStorage.setItem('message', '');
-                localStorage.setItem('filters', '');
-                _this.router.navigate(['dashboard/']);
+                _this.flashMessage.show(data.data.SendMessage.success, {
+                    cssClass: "alert-success",
+                    timeout: 3000
+                });
+                localStorage.setItem("subject", "");
+                localStorage.setItem("message", "");
+                localStorage.setItem("filters", "");
+                _this.router.navigate(["dashboard/"]);
             }
             else if (data.data.SendMessage.error) {
-                _this.flashMessage.show(data.data.SendMessage.error, { cssClass: 'alert-danger', timeout: 3000 });
+                _this.flashMessage.show(data.data.SendMessage.error, {
+                    cssClass: "alert-danger",
+                    timeout: 3000
+                });
             }
         });
     };
@@ -1290,7 +1531,7 @@ var ManageUsersComponent = (function () {
 }());
 ManageUsersComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
-        selector: 'app-manageUsers',
+        selector: "app-manageUsers",
         template: __webpack_require__("../../../../../src/app/components/dashboard/manageUsers/manageUsers.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/dashboard/manageUsers/manageUsers.component.css")]
     }),
@@ -1305,7 +1546,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/components/dashboard/viewMessages/dashboard.viewMessages.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -1336,6 +1577,7 @@ module.exports = "<h1 class=\"page-header\">View Messages</h1>\r\n"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1348,27 +1590,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ViewMessagesComponent = (function () {
-    function ViewMessagesComponent(flashMessage, router) {
+    function ViewMessagesComponent(flashMessage, authService, router) {
         this.flashMessage = flashMessage;
+        this.authService = authService;
         this.router = router;
-        this.subject = localStorage.getItem('subject');
-        this.message = localStorage.getItem('message');
     }
     ViewMessagesComponent.prototype.ngOnInit = function () {
-    };
-    ViewMessagesComponent.prototype.submit = function () {
-        if ((this.subject === undefined || this.subject === '') ||
-            (this.message === undefined || this.message === '')) {
-            this.flashMessage.show('Please Fill Out All Fields', { cssClass: 'alert-danger', timeout: 3000 });
-        }
-        else {
-            this.router.navigate(['dashboard/filters']);
-        }
-    };
-    ViewMessagesComponent.prototype.saveMessage = function () {
-        localStorage.setItem('subject', this.subject);
-        localStorage.setItem('message', this.message);
+        var messages = this.authService.getMessages('', '14354146499', '');
+        console.log(messages, 'messages from client');
     };
     return ViewMessagesComponent;
 }());
@@ -1378,10 +1609,10 @@ ViewMessagesComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/dashboard/viewMessages/dashboard.viewMessages.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/dashboard/viewMessages/dashboard.viewMessages.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angular2_flash_messages__["FlashMessagesService"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angular2_flash_messages__["FlashMessagesService"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], ViewMessagesComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=dashboard.viewMessages.component.js.map
 
 /***/ }),
@@ -1439,7 +1670,7 @@ ModalComponent = __decorate([
 /***/ "../../../../../src/app/components/home/home.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -1500,7 +1731,7 @@ HomeComponent = __decorate([
 /***/ "../../../../../src/app/components/login/login.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -1518,7 +1749,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Login</h2>\r\n<form (submit)=\"onLoginSubmit()\">\r\n  <div class=\"form-group\">\r\n    <label>Email</label>\r\n    <input type=\"email\" class=\"form-control\" [(ngModel)]=\"email\" name=\"email\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Password</label>\r\n    <input type=\"password\" class=\"form-control\" [(ngModel)]=\"password\" name=\"password\">\r\n  </div>\r\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Login\">\r\n</form>\r\n<p class=\"error\">Login:<br>\r\nEmail:admin@example.com<br>\r\nPassword:orrin1!</p>\r\n"
+module.exports = "<h2 class=\"page-header\">Login</h2>\r\n<form (submit)=\"onLoginSubmit()\">\r\n  <div class=\"form-group\">\r\n    <label>Email</label>\r\n    <input type=\"email\" class=\"form-control\" [(ngModel)]=\"email\" name=\"email\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Password</label>\r\n    <input type=\"password\" class=\"form-control\" [(ngModel)]=\"password\" name=\"password\">\r\n  </div>\r\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Login\">\r\n</form>\r\n<p class=\"error\">Login:<br>\r\n  Email:admin@example.com<br>\r\n  Password:orrin1!</p>"
 
 /***/ }),
 
@@ -1596,7 +1827,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/navbar/navbar.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -1677,7 +1908,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/profile/profile.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -1695,7 +1926,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\r\n  <h2 class=\"page-header\">{{user.name}}</h2>\r\n  <ul class=\"list-group\">\r\n    <li class=\"list-group-item\">Name: {{user.name}}</li>\r\n    <li class=\"list-group-item\">Email: {{user.email}}<button class=\"btn btn-default btn-sm pull-right\" (click)=\"emailModal.show()\"><span class=\"glyphicon glyphicon-pencil\"></span></button></li>\r\n    <li class=\"list-group-item\">Phone: {{getFormatedPhone()}}<button class=\"btn btn-default btn-sm pull-right\" (click)=\"phoneModal.show()\"><span class=\"glyphicon glyphicon-pencil\"></span></button></li>\r\n    <li class=\"list-group-item\">Date Of Birth: {{getFormatedDOB()}}<button class=\"btn btn-default btn-sm pull-right\" (click)=\"dOBModal.show()\"><span class=\"glyphicon glyphicon-pencil\"></span></button></li>\r\n    <li class=\"list-group-item\">Gender: {{validateService.titleCase(user.gender)}}<button class=\"btn btn-default btn-sm pull-right\" (click)=\"genderModal.show()\"><span class=\"glyphicon glyphicon-pencil\"></span></button></li>\r\n    <li class=\"list-group-item\">Head of Household: {{validateService.titleCase(getFormatedHOH())}}<button class=\"btn btn-default btn-sm pull-right\" (click)=\"hOHModal.show()\"><span class=\"glyphicon glyphicon-pencil\"></span></button></li>\r\n    <li class=\"list-group-item\">Skills: {{getList()}}<button class=\"btn btn-default btn-sm pull-right\" (click)=\"skillsModal.show()\"><span class=\"glyphicon glyphicon-pencil\"></span></button></li>\r\n    <li class=\"list-group-item\"><button class=\"btn btn-default\" (click)=\"passwordModal.show()\">Change Password</button></li>\r\n  </ul>\r\n  <!-- Email Modal -->\r\n  <app-modal #emailModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Email\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=changeEmail(emailModal)>\r\n          <label>New Email:</label>\r\n          <input type=\"email\" [(ngModel)]=\"newEmail\" name=\"newEmail\" class=\"form-control\">\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"emailModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changeEmail(emailModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- Phone Modal -->\r\n  <app-modal #phoneModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Phone\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=changePhone(phoneModal)>\r\n          <label>New Phone:</label>\r\n          <input type=\"tel\" [(ngModel)]=\"newPhone\" name=\"newPhone\" class=\"form-control\">\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"phoneModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changePhone(phoneModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- dOB Modal -->\r\n  <app-modal #dOBModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Date Of Birth\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=changeDOB(dOBModal)>\r\n          <label>New Date Of Birth:</label>\r\n          <input type=\"date\" [(ngModel)]=\"newDOB\" name=\"newDOB\" class=\"form-control\">\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"dOBModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changeDOB(dOBModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- Gender Modal -->\r\n  <app-modal #genderModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Gender\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=changeGender(genderModal)>\r\n          <label>Gender:  </label>\r\n          <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"newGender\" name=\"newGender\" value=\"male\">Male</label>\r\n          <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"newGender\" name=\"newGender\" value=\"female\">Female</label>\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"genderModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changeGender(genderModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- hOH Modal -->\r\n  <app-modal #hOHModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Head of Household\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=newHOH(hOHModal)>\r\n          <label>Head Of Household:  </label>\r\n          <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"newHOH\" name=\"newHOH\" value=\"true\">Yes</label>\r\n          <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"newHOH\" name=\"newHOH\" value=\"false\">No</label>\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"hOHModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changeHOH(hOHModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- Skills Modal -->\r\n  <app-modal #skillsModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Skills\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <form (submit)=\"addSkill(skillsModal)\" class=\"form-inline\">\r\n        <div class=\"form-group\">\r\n          <input [(ngModel)]=\"newSkill\" name=\"newSkill\" type=\"tel\" class=\"form-control\" placeholder=\"Search for skills\" list=\"suggestedSkills\"\r\n            (ngModelChange)=\"skillSearchChange()\" autocomplete=\"off\">\r\n          <datalist id=\"suggestedSkills\">\r\n            <option *ngFor=\"let skillSuggestion of availableSkills\" value=\"{{skillSuggestion}}\">\r\n          </datalist>\r\n          <input type=\"submit\" class=\"btn btn-primary\" value=\"Add\" [disabled]=\"!canSubmit\">\r\n        </div>\r\n      </form>\r\n      <h1 class=\"lable-holder\">\r\n        <span class=\"label label-primary skill pull-left\" *ngFor=\"let skill of user.skills\">\r\n                {{skill}}<button (click)=\"removeSkill(skill)\" class=\"btn btn-primary remove-btn\" aria-hidden=\"true\">&times;</button></span>\r\n      </h1>\r\n      <p class=\"clear-fix\"></p>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"skillsModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"skillsModal.hide()\">Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- Passowrd Modal -->\r\n  <app-modal #passwordModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Passowrd\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <form (submit)=changePassword(passwordModal)>\r\n        <div class=\"form-group\">\r\n          <label>New Password</label>\r\n          <input type=\"password\" [(ngModel)]=\"newPassword1\" name=\"newPassword1\" class=\"form-control\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label>Repeate Password</label>\r\n          <input type=\"password\" [(ngModel)]=\"newPassword2\" name=\"newPassword2\" class=\"form-control\">\r\n        </div>\r\n      </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"passwordModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changePassword(passwordModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n</div>"
+module.exports = "<div *ngIf=\"user\">\r\n  <h2 class=\"page-header\">{{user.name}}</h2>\r\n  <ul class=\"list-group\">\r\n    <li class=\"list-group-item\">Name: {{user.name}}</li>\r\n    <li class=\"list-group-item\">Email: {{user.email}}<button class=\"btn btn-default btn-sm float-right\" (click)=\"emailModal.show()\">Edit</button></li>\r\n    <li class=\"list-group-item\">Phone: {{getFormatedPhone()}}<button class=\"btn btn-default btn-sm float-right\" (click)=\"phoneModal.show()\">Edit</button></li>\r\n    <li class=\"list-group-item\">Date Of Birth: {{getFormatedDOB()}}<button class=\"btn btn-default btn-sm float-right\" (click)=\"dOBModal.show()\">Edit</button></li>\r\n    <li class=\"list-group-item\">Gender: {{validateService.titleCase(user.gender)}}<button class=\"btn btn-default btn-sm float-right\" (click)=\"genderModal.show()\">Edit</button></li>\r\n    <li class=\"list-group-item\">Head of Household: {{validateService.titleCase(getFormatedHOH())}}<button class=\"btn btn-default btn-sm float-right\" (click)=\"hOHModal.show()\">Edit</button></li>\r\n    <li class=\"list-group-item\">Skills: {{getList()}}<button class=\"btn btn-default btn-sm float-right\" (click)=\"skillsModal.show()\">Edit</button></li>\r\n    <li class=\"list-group-item\"><button class=\"btn btn-default\" (click)=\"passwordModal.show()\">Change Password</button></li>\r\n  </ul>\r\n  <!-- Email Modal -->\r\n  <app-modal #emailModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Email\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=changeEmail(emailModal)>\r\n          <label>New Email:</label>\r\n          <input type=\"email\" [(ngModel)]=\"newEmail\" name=\"newEmail\" class=\"form-control\">\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"emailModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changeEmail(emailModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- Phone Modal -->\r\n  <app-modal #phoneModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Phone\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=changePhone(phoneModal)>\r\n          <label>New Phone:</label>\r\n          <input type=\"tel\" [(ngModel)]=\"newPhone\" name=\"newPhone\" class=\"form-control\">\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"phoneModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changePhone(phoneModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- dOB Modal -->\r\n  <app-modal #dOBModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Date Of Birth\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=changeDOB(dOBModal)>\r\n          <label>New Date Of Birth:</label>\r\n          <input type=\"date\" [(ngModel)]=\"newDOB\" name=\"newDOB\" class=\"form-control\">\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"dOBModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changeDOB(dOBModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- Gender Modal -->\r\n  <app-modal #genderModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Gender\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=changeGender(genderModal)>\r\n          <label>Gender:  </label>\r\n          <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"newGender\" name=\"newGender\" value=\"male\">Male</label>\r\n          <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"newGender\" name=\"newGender\" value=\"female\">Female</label>\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"genderModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changeGender(genderModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- hOH Modal -->\r\n  <app-modal #hOHModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Head of Household\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <div class=\"form-group\">\r\n        <form (submit)=newHOH(hOHModal)>\r\n          <label>Head Of Household:  </label>\r\n          <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"newHOH\" name=\"newHOH\" value=\"true\">Yes</label>\r\n          <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"newHOH\" name=\"newHOH\" value=\"false\">No</label>\r\n        </form>\r\n      </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"hOHModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changeHOH(hOHModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- Skills Modal -->\r\n  <app-modal #skillsModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Skills\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <form (submit)=\"addSkill(skillsModal)\" class=\"form-inline\">\r\n        <div class=\"form-group\">\r\n          <input [(ngModel)]=\"newSkill\" name=\"newSkill\" type=\"tel\" class=\"form-control\" placeholder=\"Search for skills\" list=\"suggestedSkills\"\r\n            (ngModelChange)=\"skillSearchChange()\" autocomplete=\"off\">\r\n          <datalist id=\"suggestedSkills\">\r\n            <option *ngFor=\"let skillSuggestion of availableSkills\" value=\"{{skillSuggestion}}\">\r\n          </datalist>\r\n          <input type=\"submit\" class=\"btn btn-primary\" value=\"Add\" [disabled]=\"!canSubmit\">\r\n        </div>\r\n      </form>\r\n      <h1 class=\"lable-holder\">\r\n        <span class=\"label label-primary skill pull-left\" *ngFor=\"let skill of user.skills\">\r\n                {{skill}}<button (click)=\"removeSkill(skill)\" class=\"btn btn-primary remove-btn\" aria-hidden=\"true\">&times;</button></span>\r\n      </h1>\r\n      <p class=\"clear-fix\"></p>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"skillsModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"skillsModal.hide()\">Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n  <!-- Passowrd Modal -->\r\n  <app-modal #passwordModal>\r\n    <div class=\"app-modal-header\">\r\n      Change Passowrd\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n      <form (submit)=changePassword(passwordModal)>\r\n        <div class=\"form-group\">\r\n          <label>New Password</label>\r\n          <input type=\"password\" [(ngModel)]=\"newPassword1\" name=\"newPassword1\" class=\"form-control\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label>Repeate Password</label>\r\n          <input type=\"password\" [(ngModel)]=\"newPassword2\" name=\"newPassword2\" class=\"form-control\">\r\n        </div>\r\n      </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n      <button type=\"button\" class=\"btn btn-default\" (click)=\"passwordModal.hide()\">Close</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" (click)=changePassword(passwordModal)>Save changes</button>\r\n    </div>\r\n  </app-modal>\r\n</div>"
 
 /***/ }),
 
@@ -1793,23 +2024,13 @@ var ProfileComponent = (function () {
         return this.user.skills.toString().replace(/,/g, ', ');
     };
     ProfileComponent.prototype.changeEmail = function (emailModal) {
-        var _this = this;
         if (this.newEmail === undefined || this.newEmail === '') {
             emailModal.setErrorMessage('Please Enter An Email');
             return;
         }
         if (this.validateService.validateEmail(this.newEmail)) {
-            this.authService.changeEmail(this.newEmail).subscribe(function (data) {
-                if (data.data.ChangeEmail.success) {
-                    _this.user.email = _this.newEmail;
-                    _this.authService.storeUserDataNoToken(_this.user);
-                    _this.flashMessage.show(data.data.ChangeEmail.success, { cssClass: 'alert-success', timeout: 12000 });
-                    emailModal.hide();
-                }
-                else {
-                    emailModal.setErrorMessage(data.data.ChangeEmail.error);
-                }
-            });
+            this.flashMessage.show('You can\'t change email!', { cssClass: 'alert-success', timeout: 12000 });
+            emailModal.hide();
         }
         else {
             emailModal.setErrorMessage('Please Enter A Valid Email');
@@ -1909,22 +2130,14 @@ var ProfileComponent = (function () {
         }
     };
     ProfileComponent.prototype.changePassword = function (passwordModal) {
-        var _this = this;
         if (this.newPassword1 === undefined || this.newPassword2 === undefined) {
             passwordModal.setErrorMessage('Please Enter Password Twice');
             return;
         }
         var pasowrdErr = this.validateService.validateNewPassowrd(this.newPassword1, this.newPassword2);
         if (!pasowrdErr) {
-            this.authService.changePassword(this.newPassword1).subscribe(function (data) {
-                if (data.data.ChangePassword.success) {
-                    _this.flashMessage.show(data.data.ChangePassword.success, { cssClass: 'alert-success', timeout: 12000 });
-                    passwordModal.hide();
-                }
-                else {
-                    passwordModal.setErrorMessage(data.data.ChangePassword.error);
-                }
-            });
+            this.flashMessage.show('You can\'t change password!', { cssClass: 'alert-success', timeout: 12000 });
+            passwordModal.hide();
         }
         else {
             passwordModal.setErrorMessage(pasowrdErr);
@@ -2035,7 +2248,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/components/register/info/register.info.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -2053,7 +2266,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/register/info/register.info.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">{{user.name}}</h2>\n<form (submit)=\"next()\">\n  <div class=\"form-group\">\n    <label>Phone</label>\n    <input type=\"tel\" [(ngModel)]=\"user.phone\" name=\"user.phone\" class=\"form-control\">\n  </div>\n  <div class=\"form-group\">\n    <label>Date Of Birth</label>\n    <input type=\"date\" [(ngModel)]=\"user.dOB\" name=\"user.dOB\" class=\"form-control\">\n  </div>\n  <div class=\"form-group\">\n    <label>Gender:  </label>\n    <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"user.gender\" name=\"user.gender\" value=\"male\">Male</label>\n    <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"user.gender\" name=\"user.gender\" value=\"female\">Female</label>\n  </div>\n  <div class=\"form-group\">\n    <label>Head Of Household:  </label>\n    <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"user.hOH\" name=\"user.hOH\" value=\"true\">Yes</label>\n    <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"user.hOH\" name=\"user.hOH\" value=\"false\">No</label>\n  </div>\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Next\">\n</form>"
+module.exports = "<h2 class=\"page-header\">{{user.name}}</h2>\r\n<form (submit)=\"next()\">\r\n  <div class=\"form-group\">\r\n    <label>Phone</label>\r\n    <input type=\"tel\" [(ngModel)]=\"user.phone\" name=\"user.phone\" class=\"form-control\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Date Of Birth</label>\r\n    <input type=\"date\" [(ngModel)]=\"user.dOB\" name=\"user.dOB\" class=\"form-control\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Gender:  </label>\r\n    <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"user.gender\" name=\"user.gender\" value=\"male\">Male</label>\r\n    <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"user.gender\" name=\"user.gender\" value=\"female\">Female</label>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Head Of Household:  </label>\r\n    <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"user.hOH\" name=\"user.hOH\" value=\"true\">Yes</label>\r\n    <label class=\"radio-inline\"><input type=\"radio\" [(ngModel)]=\"user.hOH\" name=\"user.hOH\" value=\"false\">No</label>\r\n  </div>\r\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Next\">\r\n</form>"
 
 /***/ }),
 
@@ -2117,7 +2330,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/register/register.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -2200,7 +2413,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/register/skills/register.skills.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -2586,11 +2799,11 @@ var AuthService = (function () {
         this.http = http;
         this.apollo = apollo;
         this.skillsService = skillsService;
-        this.user = JSON.parse(localStorage.getItem('user'));
-        this.authToken = localStorage.getItem('id_token');
+        this.user = JSON.parse(localStorage.getItem("user"));
+        this.authToken = localStorage.getItem("id_token");
     }
     AuthService.prototype.registerUser = function (user, token) {
-        var MutationRegister = (_a = ["\n    mutation MutationRegister($token: String!, $password: String!, $phone: String!, $dOB: String!, $gender: String!,\n       $hOW: Boolean!, $skills: [String]!) {\n      Register(token:$token, password:$password, phone:$phone, dOB:$dOB,gender:$gender,hOH:$hOW, skills:$skills) {\n        error\n        success\n      }\n    }\n  "], _a.raw = ["\n    mutation MutationRegister($token: String!, $password: String!, $phone: String!, $dOB: String!, $gender: String!,\n       $hOW: Boolean!, $skills: [String]!) {\n      Register(token:$token, password:$password, phone:$phone, dOB:$dOB,gender:$gender,hOH:$hOW, skills:$skills) {\n        error\n        success\n      }\n    }\n  "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationRegister = (_a = ["\n      mutation MutationRegister(\n        $token: String!\n        $password: String!\n        $phone: String!\n        $dOB: String!\n        $gender: String!\n        $hOW: Boolean!\n        $skills: [String]!\n      ) {\n        Register(\n          token: $token\n          password: $password\n          phone: $phone\n          dOB: $dOB\n          gender: $gender\n          hOH: $hOW\n          skills: $skills\n        ) {\n          error\n          success\n        }\n      }\n    "], _a.raw = ["\n      mutation MutationRegister(\n        $token: String!\n        $password: String!\n        $phone: String!\n        $dOB: String!\n        $gender: String!\n        $hOW: Boolean!\n        $skills: [String]!\n      ) {\n        Register(\n          token: $token\n          password: $password\n          phone: $phone\n          dOB: $dOB\n          gender: $gender\n          hOH: $hOW\n          skills: $skills\n        ) {\n          error\n          success\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationRegister,
             variables: {
@@ -2606,7 +2819,7 @@ var AuthService = (function () {
         var _a;
     };
     AuthService.prototype.authenticateUser = function (email, password) {
-        var QueryLogin = (_a = ["\n    query LoginQuery($email: String!, $password: String!) {\n      Login(email: $email, password: $password) {\n        authToken,\n        error,\n        user{\n          id,\n          name,\n          email,\n          phone,\n          dOB,\n          gender,\n          hOH,\n          skills,\n          admin\n        }\n      }\n    }"], _a.raw = ["\n    query LoginQuery($email: String!, $password: String!) {\n      Login(email: $email, password: $password) {\n        authToken,\n        error,\n        user{\n          id,\n          name,\n          email,\n          phone,\n          dOB,\n          gender,\n          hOH,\n          skills,\n          admin\n        }\n      }\n    }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var QueryLogin = (_a = ["\n      query LoginQuery($email: String!, $password: String!) {\n        Login(email: $email, password: $password) {\n          authToken\n          error\n          user {\n            id\n            name\n            email\n            phone\n            dOB\n            gender\n            hOH\n            skills\n            admin\n          }\n        }\n      }\n    "], _a.raw = ["\n      query LoginQuery($email: String!, $password: String!) {\n        Login(email: $email, password: $password) {\n          authToken\n          error\n          user {\n            id\n            name\n            email\n            phone\n            dOB\n            gender\n            hOH\n            skills\n            admin\n          }\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.query({
             query: QueryLogin,
             variables: {
@@ -2617,27 +2830,27 @@ var AuthService = (function () {
         var _a;
     };
     AuthService.prototype.getProfile = function () {
-        return JSON.parse(localStorage.getItem('user'));
+        return JSON.parse(localStorage.getItem("user"));
     };
     AuthService.prototype.storeUserData = function (token, user) {
-        localStorage.setItem('id_token', token);
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem("id_token", token);
+        localStorage.setItem("user", JSON.stringify(user));
         this.authToken = token;
         this.user = user;
     };
     AuthService.prototype.storeUserDataNoToken = function (user) {
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
         this.user = user;
     };
     AuthService.prototype.loadToken = function () {
-        var token = localStorage.getItem('id_token');
+        var token = localStorage.getItem("id_token");
         this.authToken = token;
     };
     AuthService.prototype.loggedIn = function () {
-        return Object(__WEBPACK_IMPORTED_MODULE_3_angular2_jwt__["tokenNotExpired"])('id_token');
+        return Object(__WEBPACK_IMPORTED_MODULE_3_angular2_jwt__["tokenNotExpired"])("id_token");
     };
     AuthService.prototype.isAdmin = function () {
-        if (!Object(__WEBPACK_IMPORTED_MODULE_3_angular2_jwt__["tokenNotExpired"])('id_token')) {
+        if (!Object(__WEBPACK_IMPORTED_MODULE_3_angular2_jwt__["tokenNotExpired"])("id_token")) {
             return false;
         }
         try {
@@ -2653,7 +2866,7 @@ var AuthService = (function () {
         localStorage.clear();
     };
     AuthService.prototype.addUser = function (user) {
-        var MutationAddUser = (_a = ["\n    mutation MutationAddUser($email: String, $phone: String, $name: String!) {\n      addUser(email: $email, name:$name, phone:$phone) {\n        success,\n        error\n      }\n    }\n  "], _a.raw = ["\n    mutation MutationAddUser($email: String, $phone: String, $name: String!) {\n      addUser(email: $email, name:$name, phone:$phone) {\n        success,\n        error\n      }\n    }\n  "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationAddUser = (_a = ["\n      mutation MutationAddUser($email: String, $phone: String, $name: String!) {\n        addUser(email: $email, name: $name, phone: $phone) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation MutationAddUser($email: String, $phone: String, $name: String!) {\n        addUser(email: $email, name: $name, phone: $phone) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         var variables = {
             name: user.name
         };
@@ -2670,7 +2883,7 @@ var AuthService = (function () {
         var _a;
     };
     AuthService.prototype.getUsers = function () {
-        var QueryGetUsers = (_a = ["\n    query GetUsersQuery{\n      GetUsers{\n          name\n      }\n    }"], _a.raw = ["\n    query GetUsersQuery{\n      GetUsers{\n          name\n      }\n    }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var QueryGetUsers = (_a = ["\n      query GetUsersQuery {\n        GetUsers {\n          name\n        }\n      }\n    "], _a.raw = ["\n      query GetUsersQuery {\n        GetUsers {\n          name\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.query({
             query: QueryGetUsers
         });
@@ -2678,176 +2891,176 @@ var AuthService = (function () {
     };
     // Prifile Functions
     AuthService.prototype.changeEmail = function (email) {
-        var MutationChangeEmail = (_a = ["\n  mutation ChangeEmailMutation($email: String!){\n    ChangeEmail(email: $email){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangeEmailMutation($email: String!){\n    ChangeEmail(email: $email){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangeEmail = (_a = ["\n      mutation ChangeEmailMutation($email: String!) {\n        ChangeEmail(email: $email) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangeEmailMutation($email: String!) {\n        ChangeEmail(email: $email) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangeEmail,
             variables: {
-                email: email,
+                email: email
             }
         });
         var _a;
     };
     AuthService.prototype.changePhone = function (phone) {
-        var MutationChangePhone = (_a = ["\n  mutation ChangePhoneMutation($phone: String!){\n    ChangePhone(phone: $phone){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangePhoneMutation($phone: String!){\n    ChangePhone(phone: $phone){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangePhone = (_a = ["\n      mutation ChangePhoneMutation($phone: String!) {\n        ChangePhone(phone: $phone) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangePhoneMutation($phone: String!) {\n        ChangePhone(phone: $phone) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangePhone,
             variables: {
-                phone: phone,
+                phone: phone
             }
         });
         var _a;
     };
     AuthService.prototype.changeDOB = function (dOB) {
-        var MutationChangeDOB = (_a = ["\n  mutation ChangeDOBMutation($dOB: String!){\n    ChangeDOB(dOB: $dOB){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangeDOBMutation($dOB: String!){\n    ChangeDOB(dOB: $dOB){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangeDOB = (_a = ["\n      mutation ChangeDOBMutation($dOB: String!) {\n        ChangeDOB(dOB: $dOB) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangeDOBMutation($dOB: String!) {\n        ChangeDOB(dOB: $dOB) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangeDOB,
             variables: {
-                dOB: dOB,
+                dOB: dOB
             }
         });
         var _a;
     };
     AuthService.prototype.changeGender = function (gender) {
-        var MutationChangeGender = (_a = ["\n  mutation ChangeGenderMutation($gender: String!){\n    ChangeGender(gender: $gender){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangeGenderMutation($gender: String!){\n    ChangeGender(gender: $gender){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangeGender = (_a = ["\n      mutation ChangeGenderMutation($gender: String!) {\n        ChangeGender(gender: $gender) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangeGenderMutation($gender: String!) {\n        ChangeGender(gender: $gender) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangeGender,
             variables: {
-                gender: gender,
+                gender: gender
             }
         });
         var _a;
     };
     AuthService.prototype.changeHOH = function (hOH) {
-        var MutationChangeHOH = (_a = ["\n  mutation ChangeHOHMutation($hOH: Boolean!){\n    ChangeHOH(hOH: $hOH){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangeHOHMutation($hOH: Boolean!){\n    ChangeHOH(hOH: $hOH){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangeHOH = (_a = ["\n      mutation ChangeHOHMutation($hOH: Boolean!) {\n        ChangeHOH(hOH: $hOH) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangeHOHMutation($hOH: Boolean!) {\n        ChangeHOH(hOH: $hOH) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangeHOH,
             variables: {
-                hOH: hOH,
+                hOH: hOH
             }
         });
         var _a;
     };
     AuthService.prototype.changePassword = function (password) {
-        var MutationChangePassword = (_a = ["\n  mutation ChangePasswordMutation($password: String!){\n    ChangePassword(password: $password){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangePasswordMutation($password: String!){\n    ChangePassword(password: $password){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangePassword = (_a = ["\n      mutation ChangePasswordMutation($password: String!) {\n        ChangePassword(password: $password) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangePasswordMutation($password: String!) {\n        ChangePassword(password: $password) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangePassword,
             variables: {
-                password: password,
+                password: password
             }
         });
         var _a;
     };
     AuthService.prototype.removeSkill = function (skill) {
-        var MutationRemoveSkill = (_a = ["\n  mutation RemoveSkillMutation($skill: String!){\n    RemoveSkill(skill: $skill){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation RemoveSkillMutation($skill: String!){\n    RemoveSkill(skill: $skill){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationRemoveSkill = (_a = ["\n      mutation RemoveSkillMutation($skill: String!) {\n        RemoveSkill(skill: $skill) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation RemoveSkillMutation($skill: String!) {\n        RemoveSkill(skill: $skill) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationRemoveSkill,
             variables: {
-                skill: skill,
+                skill: skill
             }
         });
         var _a;
     };
     AuthService.prototype.addSkill = function (skill) {
-        var MutationAddSkill = (_a = ["\n  mutation AddSkillMutation($skill: String!){\n    AddSkill(skill: $skill){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation AddSkillMutation($skill: String!){\n    AddSkill(skill: $skill){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationAddSkill = (_a = ["\n      mutation AddSkillMutation($skill: String!) {\n        AddSkill(skill: $skill) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation AddSkillMutation($skill: String!) {\n        AddSkill(skill: $skill) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationAddSkill,
             variables: {
-                skill: skill,
+                skill: skill
             }
         });
         var _a;
     };
     // user admin Functions
     AuthService.prototype.changeEmailAdmin = function (email, userId) {
-        var MutationChangeEmailAdmin = (_a = ["\n  mutation ChangeEmailAdminMutation($email: String!, $userId: String!){\n    ChangeEmailAdmin(email: $email,userId: $userId){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangeEmailAdminMutation($email: String!, $userId: String!){\n    ChangeEmailAdmin(email: $email,userId: $userId){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangeEmailAdmin = (_a = ["\n      mutation ChangeEmailAdminMutation($email: String!, $userId: String!) {\n        ChangeEmailAdmin(email: $email, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangeEmailAdminMutation($email: String!, $userId: String!) {\n        ChangeEmailAdmin(email: $email, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangeEmailAdmin,
             variables: {
                 email: email,
-                userId: userId,
+                userId: userId
             }
         });
         var _a;
     };
     AuthService.prototype.changePhoneAdmin = function (phone, userId) {
-        var MutationChangePhoneAdmin = (_a = ["\n  mutation ChangePhoneAdminMutation($phone: String!, $userId: String!){\n    ChangePhoneAdmin(phone: $phone,userId: $userId){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangePhoneAdminMutation($phone: String!, $userId: String!){\n    ChangePhoneAdmin(phone: $phone,userId: $userId){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangePhoneAdmin = (_a = ["\n      mutation ChangePhoneAdminMutation($phone: String!, $userId: String!) {\n        ChangePhoneAdmin(phone: $phone, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangePhoneAdminMutation($phone: String!, $userId: String!) {\n        ChangePhoneAdmin(phone: $phone, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangePhoneAdmin,
             variables: {
                 phone: phone,
-                userId: userId,
+                userId: userId
             }
         });
         var _a;
     };
     AuthService.prototype.changeDOBAdmin = function (dOB, userId) {
-        var MutationChangeDOBAdmin = (_a = ["\n  mutation ChangeDOBAdminMutation($dOB: String!, $userId: String!){\n    ChangeDOBAdmin(dOB: $dOB,userId: $userId){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangeDOBAdminMutation($dOB: String!, $userId: String!){\n    ChangeDOBAdmin(dOB: $dOB,userId: $userId){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangeDOBAdmin = (_a = ["\n      mutation ChangeDOBAdminMutation($dOB: String!, $userId: String!) {\n        ChangeDOBAdmin(dOB: $dOB, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangeDOBAdminMutation($dOB: String!, $userId: String!) {\n        ChangeDOBAdmin(dOB: $dOB, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangeDOBAdmin,
             variables: {
                 dOB: dOB,
-                userId: userId,
+                userId: userId
             }
         });
         var _a;
     };
     AuthService.prototype.changeGenderAdmin = function (gender, userId) {
-        var MutationChangeGenderAdmin = (_a = ["\n  mutation ChangeGenderAdminMutation($gender: String!, $userId: String!){\n    ChangeGenderAdmin(gender: $gender,userId: $userId){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangeGenderAdminMutation($gender: String!, $userId: String!){\n    ChangeGenderAdmin(gender: $gender,userId: $userId){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangeGenderAdmin = (_a = ["\n      mutation ChangeGenderAdminMutation($gender: String!, $userId: String!) {\n        ChangeGenderAdmin(gender: $gender, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangeGenderAdminMutation($gender: String!, $userId: String!) {\n        ChangeGenderAdmin(gender: $gender, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangeGenderAdmin,
             variables: {
                 gender: gender,
-                userId: userId,
+                userId: userId
             }
         });
         var _a;
     };
     AuthService.prototype.changeHOHAdmin = function (hOH, userId) {
-        var MutationChangeHOHAdmin = (_a = ["\n  mutation ChangeHOHAdminMutation($hOH: Boolean!, $userId: String!){\n    ChangeHOHAdmin(hOH: $hOH,userId: $userId){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation ChangeHOHAdminMutation($hOH: Boolean!, $userId: String!){\n    ChangeHOHAdmin(hOH: $hOH,userId: $userId){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationChangeHOHAdmin = (_a = ["\n      mutation ChangeHOHAdminMutation($hOH: Boolean!, $userId: String!) {\n        ChangeHOHAdmin(hOH: $hOH, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation ChangeHOHAdminMutation($hOH: Boolean!, $userId: String!) {\n        ChangeHOHAdmin(hOH: $hOH, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationChangeHOHAdmin,
             variables: {
-                hOH: (hOH === 'true'),
-                userId: userId,
+                hOH: hOH === "true",
+                userId: userId
             }
         });
         var _a;
     };
     AuthService.prototype.changeAdminPrivilege = function (admin, userId) {
-        var MutationchangeAdminPrivilege = (_a = ["\n  mutation changeAdminPrivilegeMutation($admin: Boolean!, $userId: String!){\n    ChangeAdminPrivilege(admin: $admin,userId: $userId){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation changeAdminPrivilegeMutation($admin: Boolean!, $userId: String!){\n    ChangeAdminPrivilege(admin: $admin,userId: $userId){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationchangeAdminPrivilege = (_a = ["\n      mutation changeAdminPrivilegeMutation(\n        $admin: Boolean!\n        $userId: String!\n      ) {\n        ChangeAdminPrivilege(admin: $admin, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation changeAdminPrivilegeMutation(\n        $admin: Boolean!\n        $userId: String!\n      ) {\n        ChangeAdminPrivilege(admin: $admin, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationchangeAdminPrivilege,
             variables: {
                 admin: admin,
-                userId: userId,
+                userId: userId
             }
         });
         var _a;
     };
     AuthService.prototype.removeSkillAdmin = function (skill, userId) {
-        var MutationRemoveSkillAdmin = (_a = ["\n  mutation RemoveSkillAdminMutation($skill: String!, $userId: String!){\n    RemoveSkillAdmin(skill: $skill,userId: $userId){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation RemoveSkillAdminMutation($skill: String!, $userId: String!){\n    RemoveSkillAdmin(skill: $skill,userId: $userId){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationRemoveSkillAdmin = (_a = ["\n      mutation RemoveSkillAdminMutation($skill: String!, $userId: String!) {\n        RemoveSkillAdmin(skill: $skill, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation RemoveSkillAdminMutation($skill: String!, $userId: String!) {\n        RemoveSkillAdmin(skill: $skill, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationRemoveSkillAdmin,
             variables: {
                 skill: skill,
-                userId: userId,
+                userId: userId
             }
         });
         var _a;
     };
     AuthService.prototype.addSkillAdmin = function (skill, userId) {
-        var MutationAddSkillAdmin = (_a = ["\n  mutation AddSkillAdminMutation($skill: String!, $userId: String!){\n    AddSkillAdmin(skill: $skill,userId: $userId){\n      success,\n      error\n    }\n  }"], _a.raw = ["\n  mutation AddSkillAdminMutation($skill: String!, $userId: String!){\n    AddSkillAdmin(skill: $skill,userId: $userId){\n      success,\n      error\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var MutationAddSkillAdmin = (_a = ["\n      mutation AddSkillAdminMutation($skill: String!, $userId: String!) {\n        AddSkillAdmin(skill: $skill, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation AddSkillAdminMutation($skill: String!, $userId: String!) {\n        AddSkillAdmin(skill: $skill, userId: $userId) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.mutate({
             mutation: MutationAddSkillAdmin,
             variables: {
                 skill: skill,
-                userId: userId,
+                userId: userId
             }
         });
         var _a;
     };
     AuthService.prototype.searchUsers = function (name) {
-        var QuerySearchUser = (_a = ["\n  query SearchUserQuery($name: String!) {\n      SearchUser(name: $name) {\n      error,\n      results\n    }\n  }"], _a.raw = ["\n  query SearchUserQuery($name: String!) {\n      SearchUser(name: $name) {\n      error,\n      results\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        var QuerySearchUser = (_a = ["\n      query SearchUserQuery($name: String!) {\n        SearchUser(name: $name) {\n          error\n          results\n        }\n      }\n    "], _a.raw = ["\n      query SearchUserQuery($name: String!) {\n        SearchUser(name: $name) {\n          error\n          results\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
         return this.apollo.query({
             query: QuerySearchUser,
             variables: {
@@ -2857,20 +3070,40 @@ var AuthService = (function () {
         var _a;
     };
     AuthService.prototype.getFilterResultsNumber = function (filters) {
-        var QueryFilterResultsNumber = (_a = ["\n  query FilterResultsNumberQuery($gender: String, $hOH: String, $skills: [String],\n     $dates: [String], $names: [String]) {\n    FilterResultsNumber(gender: $gender, hOH: $hOH, skills: $skills, dates: $dates, names: $names) {\n      error,\n      success\n    }\n  }"], _a.raw = ["\n  query FilterResultsNumberQuery($gender: String, $hOH: String, $skills: [String],\n     $dates: [String], $names: [String]) {\n    FilterResultsNumber(gender: $gender, hOH: $hOH, skills: $skills, dates: $dates, names: $names) {\n      error,\n      success\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
-        return this.apollo.query({
-            query: QueryFilterResultsNumber,
-            variables: this.prepareVariables(filters)
+        return __awaiter(this, void 0, void 0, function () {
+            var QueryFilterResultsNumber, _a, _b, _c, _d;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
+                    case 0:
+                        QueryFilterResultsNumber = (_d = ["\n      query FilterResultsNumberQuery(\n        $gender: String\n        $hOH: String\n        $skills: [String]\n        $dates: [String]\n        $names: [String]\n      ) {\n        FilterResultsNumber(\n          gender: $gender\n          hOH: $hOH\n          skills: $skills\n          dates: $dates\n          names: $names\n        ) {\n          error\n          success\n        }\n      }\n    "], _d.raw = ["\n      query FilterResultsNumberQuery(\n        $gender: String\n        $hOH: String\n        $skills: [String]\n        $dates: [String]\n        $names: [String]\n      ) {\n        FilterResultsNumber(\n          gender: $gender\n          hOH: $hOH\n          skills: $skills\n          dates: $dates\n          names: $names\n        ) {\n          error\n          success\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_d));
+                        _b = (_a = this.apollo).query;
+                        _c = {
+                            query: QueryFilterResultsNumber
+                        };
+                        return [4 /*yield*/, this.prepareVariables(filters)];
+                    case 1: return [2 /*return*/, _b.apply(_a, [(_c.variables = _e.sent(),
+                                _c)])];
+                }
+            });
         });
-        var _a;
     };
     AuthService.prototype.getFilterResults = function (filters) {
-        var QueryFilterResults = (_a = ["\n  query FilterResultsQuery($gender: String, $hOH: String, $skills: [String],\n     $dates: [String], $names: [String]) {\n    FilterResults(gender: $gender, hOH: $hOH, skills: $skills, dates: $dates, names: $names) {\n      error,\n      success {name, email, phone, dOB, hOH, gender, admin, skills, id}\n    }\n  }"], _a.raw = ["\n  query FilterResultsQuery($gender: String, $hOH: String, $skills: [String],\n     $dates: [String], $names: [String]) {\n    FilterResults(gender: $gender, hOH: $hOH, skills: $skills, dates: $dates, names: $names) {\n      error,\n      success {name, email, phone, dOB, hOH, gender, admin, skills, id}\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
-        return this.apollo.query({
-            query: QueryFilterResults,
-            variables: this.prepareVariables(filters)
+        return __awaiter(this, void 0, void 0, function () {
+            var QueryFilterResults, _a, _b, _c, _d;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
+                    case 0:
+                        QueryFilterResults = (_d = ["\n      query FilterResultsQuery(\n        $gender: String\n        $hOH: String\n        $skills: [String]\n        $dates: [String]\n        $names: [String]\n      ) {\n        FilterResults(\n          gender: $gender\n          hOH: $hOH\n          skills: $skills\n          dates: $dates\n          names: $names\n        ) {\n          error\n          success {\n            name\n            email\n            phone\n            dOB\n            hOH\n            gender\n            admin\n            skills\n            id\n          }\n        }\n      }\n    "], _d.raw = ["\n      query FilterResultsQuery(\n        $gender: String\n        $hOH: String\n        $skills: [String]\n        $dates: [String]\n        $names: [String]\n      ) {\n        FilterResults(\n          gender: $gender\n          hOH: $hOH\n          skills: $skills\n          dates: $dates\n          names: $names\n        ) {\n          error\n          success {\n            name\n            email\n            phone\n            dOB\n            hOH\n            gender\n            admin\n            skills\n            id\n          }\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_d));
+                        _b = (_a = this.apollo).query;
+                        _c = {
+                            query: QueryFilterResults
+                        };
+                        return [4 /*yield*/, this.prepareVariables([].concat(filters))];
+                    case 1: return [2 /*return*/, _b.apply(_a, [(_c.variables = _e.sent(),
+                                _c)])];
+                }
+            });
         });
-        var _a;
     };
     AuthService.prototype.sendMessage = function (filters, subject, message) {
         return __awaiter(this, void 0, void 0, function () {
@@ -2878,7 +3111,7 @@ var AuthService = (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        QuerySendMessage = (_a = ["\n  query SendMessageQuery($gender: String, $hOH: String, $skills: [String],\n    $dates: [String], $names: [String], $message: String!, $subject: String!) {\n      SendMessage(gender: $gender, hOH: $hOH, skills: $skills, dates: $dates,\n         names: $names, message: $message, subject: $subject) {\n      error,\n      success\n    }\n  }"], _a.raw = ["\n  query SendMessageQuery($gender: String, $hOH: String, $skills: [String],\n    $dates: [String], $names: [String], $message: String!, $subject: String!) {\n      SendMessage(gender: $gender, hOH: $hOH, skills: $skills, dates: $dates,\n         names: $names, message: $message, subject: $subject) {\n      error,\n      success\n    }\n  }"], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+                        QuerySendMessage = (_a = ["\n      query SendMessageQuery(\n        $gender: String\n        $hOH: String\n        $skills: [String]\n        $dates: [String]\n        $names: [String]\n        $message: String!\n        $subject: String!\n      ) {\n        SendMessage(\n          gender: $gender\n          hOH: $hOH\n          skills: $skills\n          dates: $dates\n          names: $names\n          message: $message\n          subject: $subject\n        ) {\n          error\n          success\n        }\n      }\n    "], _a.raw = ["\n      query SendMessageQuery(\n        $gender: String\n        $hOH: String\n        $skills: [String]\n        $dates: [String]\n        $names: [String]\n        $message: String!\n        $subject: String!\n      ) {\n        SendMessage(\n          gender: $gender\n          hOH: $hOH\n          skills: $skills\n          dates: $dates\n          names: $names\n          message: $message\n          subject: $subject\n        ) {\n          error\n          success\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
                         return [4 /*yield*/, this.prepareVariables(filters)];
                     case 1:
                         variables = _b.sent();
@@ -2892,6 +3125,22 @@ var AuthService = (function () {
             });
         });
     };
+    AuthService.prototype.getMessages = function (to, from, dateSentAfter) {
+        return __awaiter(this, void 0, void 0, function () {
+            var QueryGetMessages, _a;
+            return __generator(this, function (_b) {
+                QueryGetMessages = (_a = ["\n      query getMessagesQuery(\n        $to: String\n        $from: String\n        $dateSentAfter: String\n      ) {\n        getMessages(to: $to, from: $from, dateSentAfter: $dateSentAfter) {\n          error\n          messages\n        }\n      }\n    "], _a.raw = ["\n      query getMessagesQuery(\n        $to: String\n        $from: String\n        $dateSentAfter: String\n      ) {\n        getMessages(to: $to, from: $from, dateSentAfter: $dateSentAfter) {\n          error\n          messages\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+                return [2 /*return*/, this.apollo.query({
+                        query: QueryGetMessages,
+                        variables: {
+                            to: to,
+                            from: from,
+                            dateSentAfter: dateSentAfter
+                        }
+                    })];
+            });
+        });
+    };
     AuthService.prototype.prepareVariables = function (filters) {
         return __awaiter(this, void 0, void 0, function () {
             var variables, maleIndex, femaleIndex, hOHIndex, nHOHIndex, skills;
@@ -2899,24 +3148,24 @@ var AuthService = (function () {
                 switch (_a.label) {
                     case 0:
                         variables = {};
-                        maleIndex = filters.indexOf('Male');
+                        maleIndex = filters.indexOf("Male");
                         if (maleIndex !== -1) {
-                            variables.gender = 'male';
+                            variables.gender = "male";
                             filters.splice(maleIndex, 1);
                         }
-                        femaleIndex = filters.indexOf('Female');
+                        femaleIndex = filters.indexOf("Female");
                         if (femaleIndex !== -1) {
-                            variables.gender = 'female';
+                            variables.gender = "female";
                             filters.splice(femaleIndex, 1);
                         }
-                        hOHIndex = filters.indexOf('Not Head Of Household');
+                        hOHIndex = filters.indexOf("Not Head Of Household");
                         if (hOHIndex !== -1) {
-                            variables.hOH = 'yes';
+                            variables.hOH = "yes";
                             filters.splice(hOHIndex, 1);
                         }
-                        nHOHIndex = filters.indexOf('Head Of Household');
+                        nHOHIndex = filters.indexOf("Head Of Household");
                         if (nHOHIndex !== -1) {
-                            variables.hOH = 'no';
+                            variables.hOH = "no";
                             filters.splice(nHOHIndex, 1);
                         }
                         return [4 /*yield*/, this.skillsService.getSkillsList()];
@@ -2930,7 +3179,8 @@ var AuthService = (function () {
                                 variables.skills.push(filter);
                                 return;
                             }
-                            if (parseInt(filter, 0) <= new Date().getUTCFullYear() && parseInt(filter, 0) > 1900) {
+                            if (parseInt(filter, 0) <= new Date().getUTCFullYear() &&
+                                parseInt(filter, 0) > 1900) {
                                 if (variables.dates === undefined) {
                                     variables.dates = [];
                                 }
@@ -2946,6 +3196,26 @@ var AuthService = (function () {
                 }
             });
         });
+    };
+    AuthService.prototype.addAffiliationAdmin = function (affiliation) {
+        var MutationAddAffiliationAdmin = (_a = ["\n      mutation AddAffiliationAdminMutation($affiliation: String!) {\n        AddAffiliationAdmin(affiliation: $affiliation) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation AddAffiliationAdminMutation($affiliation: String!) {\n        AddAffiliationAdmin(affiliation: $affiliation) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        return this.apollo.mutate({
+            mutation: MutationAddAffiliationAdmin,
+            variables: {
+                affiliation: affiliation
+            }
+        });
+        var _a;
+    };
+    AuthService.prototype.removeAffiliationAdmin = function (affiliation) {
+        var MutationRemoveAffiliationAdmin = (_a = ["\n      mutation RemoveAffiliationAdminMutation($affiliation: String!) {\n        RemoveAffiliationAdmin(affiliation: $affiliation) {\n          success\n          error\n        }\n      }\n    "], _a.raw = ["\n      mutation RemoveAffiliationAdminMutation($affiliation: String!) {\n        RemoveAffiliationAdmin(affiliation: $affiliation) {\n          success\n          error\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_5_graphql_tag___default()(_a));
+        return this.apollo.mutate({
+            mutation: MutationRemoveAffiliationAdmin,
+            variables: {
+                affiliation: affiliation
+            }
+        });
+        var _a;
     };
     return AuthService;
 }());
@@ -3197,16 +3467,21 @@ var SkillsService = (function () {
     }
     SkillsService.prototype.getSkillsList = function () {
         var _this = this;
-        var QuerySkills = (_a = ["\n          query SkillsQuery {\n            GetSkills {\n                error,\n                skills,\n              }\n            }"], _a.raw = ["\n          query SkillsQuery {\n            GetSkills {\n                error,\n                skills,\n              }\n            }"], __WEBPACK_IMPORTED_MODULE_3_graphql_tag___default()(_a));
+        var QuerySkills = (_a = ["\n      query SkillsQuery {\n        GetSkills {\n          error\n          skills\n        }\n      }\n    "], _a.raw = ["\n      query SkillsQuery {\n        GetSkills {\n          error\n          skills\n        }\n      }\n    "], __WEBPACK_IMPORTED_MODULE_3_graphql_tag___default()(_a));
         return new Promise(function (resolve) {
-            var skills = _this.apollo.query({
+            var skills = _this.apollo
+                .query({
                 query: QuerySkills
-            }).subscribe(function (data) {
+            })
+                .subscribe(function (data) {
                 if (data.data.GetSkills.skills) {
                     resolve(data.data.GetSkills.skills);
                 }
                 else {
-                    _this.flashMessage.show(data.data.GetSkills.error, { cssClass: 'alert-danger', timeout: 12000 });
+                    _this.flashMessage.show(data.data.GetSkills.error, {
+                        cssClass: "alert-danger",
+                        timeout: 12000
+                    });
                 }
             });
         });
@@ -3214,12 +3489,16 @@ var SkillsService = (function () {
     };
     SkillsService.prototype.getSkills = function (userSkills) {
         return __awaiter(this, void 0, void 0, function () {
-            var skills;
+            var skillsUnclean, skills;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.getSkillsList()];
                     case 1:
-                        skills = _a.sent();
+                        skillsUnclean = _a.sent();
+                        skills = [];
+                        skillsUnclean.forEach(function (skill) {
+                            skills.push(skill);
+                        });
                         userSkills.forEach(function (skill) {
                             var index = skills.indexOf(skill); // <-- Not supported in <IE9
                             if (index !== -1) {

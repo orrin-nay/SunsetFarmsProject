@@ -1,39 +1,41 @@
 <h1 class="page-header">Dashboard</h1>
 <form (submit)="addFillter()" class="form-inline">
-    <div class="form-group">
-      <input  [(ngModel)]="filterField" name="filterField" type="tel" class="form-control" 
-      placeholder="Filter By Gender Head Of House Birth Year Or Skills" list="suggestedFilters" (ngModelChange)="filterSearchChange()" autocomplete="off">
-      <datalist id="suggestedFilters">
-        <option *ngFor="let filterSuggestion of filterSuggestions" value="{{filterSuggestion}}">
-      </datalist>
-      <input type="submit" class="btn btn-primary" value="Add" [disabled]="!canSubmit">
-    </div>
-    <p class="pull-right">{{numberOfRecipients}} Results</p>
+  <div class="form-group">
+    <input [(ngModel)]="filterField" name="filterField" type="text" class="form-control" placeholder="Filter By Gender Head Of House Birth Year Or Skills"
+      list="suggestedFilters" (ngModelChange)="filterSearchChange()" autocomplete="off">
+    <datalist id="suggestedFilters">
+      <option *ngFor="let filterSuggestion of filterSuggestions" value="{{filterSuggestion}}">
+    </datalist>
+    <input type="submit" class="btn btn-primary" value="Add" [disabled]="!canSubmit">
+  </div>
+  <p class="pull-right">{{numberOfRecipients}} Results</p>
 </form>
 <h1 class="lable-holder">
-    <span class="label label-primary filter" *ngFor="let filter of filters">
-        {{filter}}<button (click)="removeFilter(filter)" class="btn btn-primary remove-btn">&times;</button></span>
+  <span class="label label-primary filter" *ngFor="let filter of filters">
+    {{filter}}
+    <button (click)="removeFilter(filter)" class="btn btn-primary remove-btn">&times;</button>
+  </span>
 </h1>
 <p class="clear-fix"></p>
 <br>
 <hr>
-  
+
 <form (submit)="AreYouSureModal.show()">
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Finished">
-    </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Finished">
+  </div>
 </form>
-  <!-- hOH Modal -->
-  <app-modal #AreYouSureModal>
-        <div class="app-modal-header">
-          Are you sure?
-        </div>
-        <div class="app-modal-body">
-                <h2>Are you sure you want to send this message to {{numberOfRecipients}} recipients?</h2>
-        </div>
-        <div class="app-modal-footer">
-          <button type="button" class="btn btn-default" (click)="AreYouSureModal.hide()">No</button>
-          <button type="button" class="btn btn-primary" (click)=sendMessage(AreYouSureModal)>Yes</button>
-        </div>
-      </app-modal>
-      <app-user-table [users] = "users"></app-user-table>
+<!-- hOH Modal -->
+<app-modal #AreYouSureModal>
+  <div class="app-modal-header">
+    Are you sure?
+  </div>
+  <div class="app-modal-body">
+    <h2>Are you sure you want to send this message to {{numberOfRecipients}} recipients?</h2>
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="AreYouSureModal.hide()">No</button>
+    <button type="button" class="btn btn-primary" (click)=sendMessage(AreYouSureModal)>Yes</button>
+  </div>
+</app-modal>
+<app-user-table [users]="users"></app-user-table>
